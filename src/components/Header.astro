@@ -1,0 +1,46 @@
+---
+import Icon from './Basic/Icon.astro';
+import Text from './Basic/Text.astro';
+
+type Props = {
+	selected?: string;
+};
+
+const properties = Astro.props;
+
+// Customisable
+const links = [
+	{
+		name: 'New Patients',
+		href: 'new_patients.html',
+	},
+	{
+		name: 'Treatments',
+		href: 'treatments.html',
+	},
+	{
+		name: 'Emergency',
+		href: 'emergency.html',
+	},
+	{
+		name: 'Contact',
+		href: 'contact.html',
+	},
+];
+---
+
+<header
+	class="flex w-full flex-row items-center justify-start bg-blue text-white"
+>
+	<Icon />
+
+	{
+		links.map((link) => {
+			if (properties.selected == link.name) {
+				return <Text type="title-sm"> {link.name} </Text>;
+			} else {
+				return <Text type="body"> {link.name} </Text>;
+			}
+		})
+	}
+</header>

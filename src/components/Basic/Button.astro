@@ -1,0 +1,52 @@
+---
+type Props = {
+	class?: string;
+	style: 'primary' | 'secondary' | 'tertiary';
+	size: 'small' | 'medium' | 'large';
+} & (ButtonProps | AnchorProps);
+
+type ButtonProps = {
+	isLink: false;
+	type: 'submit' | 'reset' | 'button' | null | undefined;
+};
+
+type AnchorProps = {
+	isLink: true;
+	href: string;
+};
+
+var properties = Astro.props;
+
+properties.style == 'primary'
+	? (properties.class =
+			'bg-blue-1 text-white-1 hover:brightness-110 ' + properties.class)
+	: properties.style == 'secondary'
+	? (properties.class = 'bg-gray1-1 text-black-1 ' + properties.class)
+	: 0;
+
+properties.size == 'small'
+	? (properties.class = 'px-0 py-0 rounded-sm ' + properties.class)
+	: properties.size == 'medium'
+	? (properties.class = 'px-2 py-1 rounded-md ' + properties.class)
+	: properties.size == 'large'
+	? (properties.class = 'px-4 py-2 rounded-md ' + properties.class)
+	: 0;
+---
+
+{
+	properties.isLink == true ? (
+		properties.style == 'tertiary' ? (
+			<a class:list={[properties.class]} href={properties.href}>
+				<slot /> ⯈
+			</a>
+		) : (
+			<a class:list={[properties.class]} href={properties.href}>
+				<slot />
+			</a>
+		)
+	) : (
+		<button class:list={[properties.class]} type={properties.type}>
+			<slot />
+		</button>
+	)
+}

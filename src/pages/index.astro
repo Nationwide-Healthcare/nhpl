@@ -1,17 +1,72 @@
 ---
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Text from '../components/basic/Text.astro';
+// import Button from '../components/Button.astro';
+// import Banner from '../components/Banner.astro';
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
-    </head>
-    <body class="flex w-screen flex-col">
-        <h1 class="flex flex-col flex-wrap rounded-sm font-bold text-red-500">
-            Astro
-        </h1>
-    </body>
+	<Head title="" description="" keywords="" />
+
+	<body>
+		<Header selected="New Patients" />
+
+		<Text type="title-xl" />
+		<Text type="title-lg" />
+		<Text type="title-md" />
+		<Text type="title-sm" />
+		<Text type="body" />
+		<Text type="caption" />
+
+		<!--
+		<div class="flex flex-col items-center justify-center gap-6 py-16">
+			<Banner
+				class="mb-2 flex flex-row rounded-3xl bg-yellow-1 px-8 py-1"
+			>
+				<p class="font-light">
+					We're currently experiencing abnormally high demand for NHS
+					treatment.
+					<Button
+						style="tertiary"
+						size="small"
+						isLink={true}
+						href="notices"
+						class="font-bold text-blue-1"
+					>
+						Read more
+					</Button>
+				</p>
+			</Banner>
+
+			<h1 class="text-4xl font-black tracking-tight">
+				Welcome to Seven Dental
+			</h1>
+			<p class="font-light">Setting the Gold Standard in Dental Care.</p>
+
+			<div class="flex flex-row items-center justify-center gap-4">
+				<Button
+					style="primary"
+					size="large"
+					isLink={true}
+					href="contact"
+					class=""
+				>
+					Book now
+				</Button>
+
+				<Button
+					style="tertiary"
+					size="small"
+					isLink={true}
+					href="about"
+					class="font-bold"
+				>
+					Learn more
+				</Button>
+			</div>
+		</div>
+
+	-->
+	</body>
 </html>

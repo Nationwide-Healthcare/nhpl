@@ -1,0 +1,29 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	keywords: string;
+}
+
+const { title, description, keywords } = Astro.props;
+---
+
+<head>
+	<title>{title} | Seven Dental</title>
+
+	<!-- <base href="" target="_self" /> -->
+
+	<link rel="icon" type="image/ico" href="/images/logo/logo.ico" />
+
+	<meta charset="utf-8" />
+	<meta name="author" content="Nationwide Healthcare Providers Limited" />
+	<meta name="description" content={description} />
+	<meta name="keywords" content={keywords} />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="robots" content="index, follow, noarchive" />
+
+	<!--
+	<meta name="theme-color" content="" />
+	<meta name="color-scheme" content="" />
+	-->
+</head>
