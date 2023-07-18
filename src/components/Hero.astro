@@ -1,0 +1,93 @@
+---
+import Button from './Basic/Button.astro';
+import Text from './Basic/Text.astro';
+
+type Props = {
+	title?: string;
+	body?: string;
+	button1?: {
+		name: string;
+		href: string;
+	};
+	button2?: {
+		name: string;
+		href: string;
+	};
+	image?: string;
+};
+
+const properties = Astro.props;
+---
+
+<div class="flex w-full flex-col items-center justify-center gap-4 px-4 pt-16">
+	{
+		properties.title ? (
+			<Text type="title-xl">{properties.title}</Text>
+		) : (
+			<Text type="title-xl" />
+		)
+	}
+
+	{
+		properties.body ? (
+			<Text type="body" weight="normal">
+				{properties.body}
+			</Text>
+		) : (
+			<Text type="body" weight="normal" />
+		)
+	}
+
+	<div class="flex flex-row gap-2 py-4">
+		{
+			properties.button1 ? (
+				<Button
+					type={'link'}
+					href={properties.button1.href}
+					style={'primary'}
+					size={'large'}
+				>
+					{properties.button1.name}
+				</Button>
+			) : (
+				<Button
+					type={'link'}
+					href={null}
+					style={'primary'}
+					size={'large'}
+				/>
+			)
+		}
+
+		{
+			properties.button2 ? (
+				<Button
+					type={'link'}
+					href={properties.button2.href}
+					style={'tertiary'}
+					size={'large'}
+				>
+					{properties.button2.name}
+				</Button>
+			) : (
+				<Button
+					type={'link'}
+					href={null}
+					style={'tertiary'}
+					size={'large'}
+				/>
+			)
+		}
+	</div>
+
+	{
+		properties.image ? (
+			<img src={properties.image} class="mt-8 max-w-full rounded-t-xl" />
+		) : (
+			<img
+				src="/images/placeholder.jpg"
+				class="mt-8 max-w-full rounded-t-xl"
+			/>
+		)
+	}
+</div>

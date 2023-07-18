@@ -1,12 +1,13 @@
 ---
-type Props = {
-	type:
-		| 'title-xl'
-		| 'title-lg'
-		| 'title-md'
-		| 'title-sm'
-		| 'body'
-		| 'caption';
+type Props = TitleProps | BodyProps;
+
+type TitleProps = {
+	type: 'title-xl' | 'title-lg' | 'title-md' | 'title-sm';
+};
+
+type BodyProps = {
+	type: 'body';
+	weight: 'light' | 'normal' | 'bold';
 };
 
 const properties = Astro.props;
@@ -30,12 +31,18 @@ const properties = Astro.props;
 			<slot>Title Small</slot>
 		</h4>
 	) : properties.type == 'body' ? (
-		<p class="text-body">
-			<slot>Body</slot>
-		</p>
-	) : properties.type == 'caption' ? (
-		<p class="text-caption">
-			<slot>Caption</slot>
-		</p>
+		properties.weight == 'light' ? (
+			<p class="text-body font-light">
+				<slot>Body Light</slot>
+			</p>
+		) : properties.weight == 'normal' ? (
+			<p class="text-body">
+				<slot>Body Normal</slot>
+			</p>
+		) : properties.weight == 'bold' ? (
+			<p class="text-body font-bold">
+				<slot>Body Bold</slot>
+			</p>
+		) : null
 	) : null
 }

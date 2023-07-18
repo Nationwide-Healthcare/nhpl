@@ -6,26 +6,25 @@ type Props = {
 } & (ButtonProps | AnchorProps);
 
 type ButtonProps = {
-	isLink: false;
 	type: 'submit' | 'reset' | 'button' | null | undefined;
 };
 
 type AnchorProps = {
-	isLink: true;
-	href: string;
+	type: 'link';
+	href: string | null;
 };
 
 var properties = Astro.props;
 
 properties.style == 'primary'
 	? (properties.class =
-			'bg-blue-1 text-white-1 hover:brightness-110 ' + properties.class)
+			'bg-blue text-white hover:brightness-110 ' + properties.class)
 	: properties.style == 'secondary'
-	? (properties.class = 'bg-gray1-1 text-black-1 ' + properties.class)
+	? (properties.class = 'bg-gray1 text-black' + properties.class)
 	: 0;
 
 properties.size == 'small'
-	? (properties.class = 'px-0 py-0 rounded-sm ' + properties.class)
+	? (properties.class = 'px-0 py-0' + properties.class)
 	: properties.size == 'medium'
 	? (properties.class = 'px-2 py-1 rounded-md ' + properties.class)
 	: properties.size == 'large'
@@ -34,19 +33,22 @@ properties.size == 'small'
 ---
 
 {
-	properties.isLink == true ? (
+	properties.type == 'link' ? (
 		properties.style == 'tertiary' ? (
 			<a class:list={[properties.class]} href={properties.href}>
-				<slot /> ⯈
+				<slot>Button</slot>⯈
 			</a>
 		) : (
-			<a class:list={[properties.class]} href={properties.href}>
-				<slot />
+			<a
+				class:list={[properties.class, 'font-bold']}
+				href={properties.href}
+			>
+				<slot>Button</slot>
 			</a>
 		)
 	) : (
 		<button class:list={[properties.class]} type={properties.type}>
-			<slot />
+			<slot>Button</slot>
 		</button>
 	)
 }

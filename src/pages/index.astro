@@ -1,72 +1,37 @@
 ---
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
-import Text from '../components/basic/Text.astro';
-// import Button from '../components/Button.astro';
+import Text from '../components/Basic/Text.astro';
+import Hero from '../components/Hero.astro';
 // import Banner from '../components/Banner.astro';
 ---
 
 <html lang="en">
-	<Head title="" description="" keywords="" />
+	<Head title="Home" description="" keywords="" />
 
 	<body>
-		<Header selected="New Patients" />
+		<Header />
+
+		<Hero
+			title={'Welcome to Seven Dental'}
+			body={'Setting the Gold Standard in Dental Care'}
+			button1={{
+				name: 'Book Now',
+				href: 'contact.html',
+			}}
+			button2={{
+				name: 'Learn more',
+				href: 'about.html',
+			}}
+			image={''}
+		/>
 
 		<Text type="title-xl" />
 		<Text type="title-lg" />
 		<Text type="title-md" />
 		<Text type="title-sm" />
-		<Text type="body" />
-		<Text type="caption" />
-
-		<!--
-		<div class="flex flex-col items-center justify-center gap-6 py-16">
-			<Banner
-				class="mb-2 flex flex-row rounded-3xl bg-yellow-1 px-8 py-1"
-			>
-				<p class="font-light">
-					We're currently experiencing abnormally high demand for NHS
-					treatment.
-					<Button
-						style="tertiary"
-						size="small"
-						isLink={true}
-						href="notices"
-						class="font-bold text-blue-1"
-					>
-						Read more
-					</Button>
-				</p>
-			</Banner>
-
-			<h1 class="text-4xl font-black tracking-tight">
-				Welcome to Seven Dental
-			</h1>
-			<p class="font-light">Setting the Gold Standard in Dental Care.</p>
-
-			<div class="flex flex-row items-center justify-center gap-4">
-				<Button
-					style="primary"
-					size="large"
-					isLink={true}
-					href="contact"
-					class=""
-				>
-					Book now
-				</Button>
-
-				<Button
-					style="tertiary"
-					size="small"
-					isLink={true}
-					href="about"
-					class="font-bold"
-				>
-					Learn more
-				</Button>
-			</div>
-		</div>
-
-	-->
+		<Text type="body" weight="light" />
+		<Text type="body" weight="normal" />
+		<Text type="body" weight="bold" />
 	</body>
 </html>

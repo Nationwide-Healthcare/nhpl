@@ -66,18 +66,18 @@ module.exports = {
 			],
 
 			body: [
-				'24px',
+				'18px',
 				{
-					lineHeight: '30px',
+					lineHeight: '24px',
 					letterSpacing: '0em',
 					fontWeight: '400',
 				},
 			],
 
 			caption: [
-				'16px',
+				'12px',
 				{
-					lineHeight: '20px',
+					lineHeight: '18px',
 					letterSpacing: '0em',
 					fontWeight: '400r',
 				},
