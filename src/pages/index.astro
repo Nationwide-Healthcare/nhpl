@@ -12,19 +12,14 @@ import Hero from '../components/Hero.astro';
 	<body>
 		<Header />
 
-		<Hero
-			title={'Welcome to Seven Dental'}
-			body={'Setting the Gold Standard in Dental Care'}
-			button1={{
-				name: 'Book Now',
-				href: 'contact.html',
-			}}
-			button2={{
-				name: 'Learn more',
-				href: 'about.html',
-			}}
-			image={''}
-		/>
+		<Hero button1="contact.html" button2="about.html" image={''}>
+			<Fragment slot="title">Welcome to Seven Dental</Fragment>
+			<Fragment slot="body">
+				Setting the Gold Standard in Dental Care
+			</Fragment>
+			<Fragment slot="button1">Book Now</Fragment>
+			<Fragment slot="button2">Learn more</Fragment>
+		</Hero>
 
 		<Text type="title-xl" />
 		<Text type="title-lg" />
