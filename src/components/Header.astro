@@ -1,68 +1,31 @@
 ---
-import Icon from './Basic/Icon.astro';
-import Button from './Basic/Button.astro';
+import Header from '../../../components/Header.astro';
 
 type Props = {
 	selected?: string;
 };
 
 const properties = Astro.props;
-
-// Customisable
-const links = [
-	{
-		name: 'New Patients',
-		href: 'new_patients.html',
-	},
-	{
-		name: 'Treatments',
-		href: 'treatments.html',
-	},
-	{
-		name: 'Emergency',
-		href: 'emergency.html',
-	},
-	{
-		name: 'Contact',
-		href: 'contact.html',
-	},
-];
 ---
 
-<header
-	class="sticky left-0 top-0 flex w-full flex-row items-center justify-center gap-4 bg-blue py-4 text-white"
->
-	<div class="absolute left-4">
-		<Icon />
-	</div>
-
-	{
-		links.map((link) => {
-			if (properties.selected == link.name) {
-				return (
-					<div class="rounded-md bg-black bg-opacity-10 px-4 py-2">
-						<Button
-							style={'primary'}
-							size={'small'}
-							type={'link'}
-							href={null}
-						>
-							{link.name}
-						</Button>
-					</div>
-				);
-			} else {
-				return (
-					<Button
-						style={'primary'}
-						size={'large'}
-						type={'link'}
-						href={link.href}
-					>
-						{link.name}
-					</Button>
-				);
-			}
-		})
-	}
-</header>
+<Header
+	links={[
+		{
+			name: 'For Patients',
+			href: '/patients',
+		},
+		{
+			name: 'For Nurses',
+			href: '/nurses',
+		},
+		{
+			name: 'For Dentists',
+			href: '/dentists',
+		},
+		{
+			name: 'Gallery',
+			href: '/gallery',
+		},
+	]}
+	selected={properties.selected}
+/>

@@ -1,32 +1,81 @@
 ---
-import Head from '../components/Head.astro';
+import Head from '../../../components/Head.astro';
 import Header from '../components/Header.astro';
-import Text from '../components/Basic/Text.astro';
-import Hero from '../components/Hero.astro';
-// import Banner from '../components/Banner.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+import Text from '../../../components/Text.astro';
+import Hero from '../../../components/Hero.astro';
+import Button from '../../../components/Button.astro';
 ---
 
-<html lang="en">
-	<Head title="Home" description="" keywords="" />
+<html>
+	<Head title="NHPL" description="" keyword="" />
 
 	<body>
 		<Header />
 
-		<Hero button1="contact.html" button2="about.html" image={''}>
-			<Fragment slot="title">Welcome to Seven Dental</Fragment>
-			<Fragment slot="body">
-				Setting the Gold Standard in Dental Care
-			</Fragment>
-			<Fragment slot="button1">Book Now</Fragment>
-			<Fragment slot="button2">Learn more</Fragment>
-		</Hero>
+		<div class="text-center">
+			<Hero>
+				<Fragment slot="title">
+					Nationwide Healthcare Providers Limited
+				</Fragment>
+				<Fragment slot="body">
+					We are a group of dental practices located throughout
+					England providing NHS and Private dental services.
+				</Fragment>
 
-		<Text type="title-xl" />
-		<Text type="title-lg" />
-		<Text type="title-md" />
-		<Text type="title-sm" />
-		<Text type="body" weight="light" />
-		<Text type="body" weight="normal" />
-		<Text type="body" weight="bold" />
+				<Fragment slot="buttons">
+					<Button style="primary" type="link" href="#locations">
+						Our Locations
+					</Button>
+					<Button style="secondary" type="link" href="/about">
+						View Gallery
+					</Button>
+				</Fragment>
+			</Hero>
+		</div>
+
+		<div class="bg-gray6 px-4 py-8">
+			<SectionHeading>
+				<Fragment slot="title">Our Mission</Fragment>
+				<Fragment slot="body">
+					The philosophy behind what we do at NHPL
+				</Fragment>
+			</SectionHeading>
+
+			<Text type="body" weight="normal">
+				Our aim is to provide first class NHS and Private services to
+				patients throughout England and to create an excellent
+				environment in which our dental surgeons and clinical teams
+				continuously thrive and develop.
+			</Text>
+		</div>
+
+		<div class="px-4 py-8">
+			<SectionHeading>
+				<Fragment slot="title">Our Story</Fragment>
+			</SectionHeading>
+
+			<Text type="body" weight="normal" />
+		</div>
+
+		<div class="bg-gray6 px-4 py-8" id="locations">
+			<SectionHeading>
+				<Fragment slot="title">Our Locations</Fragment>
+				<Fragment slot="body">Where to find us</Fragment>
+			</SectionHeading>
+
+			<iframe
+				src="https://www.google.com/maps/d/embed?mid=1MmYerhvF2XgRWICjAPWKKnwiIzA3jPY"
+				width="100%"
+				height="480"></iframe>
+		</div>
+
+		<div class="px-4 py-8">
+			<SectionHeading>
+				<Fragment slot="title">Reviews</Fragment>
+			</SectionHeading>
+
+			<Text type="body" weight="normal" />
+		</div>
 	</body>
 </html>
