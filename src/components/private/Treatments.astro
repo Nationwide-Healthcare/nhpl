@@ -1,0 +1,105 @@
+---
+import Text from '../public/Text.astro';
+import Link from '../public/Link.astro';
+import Button from '../public/Button.astro';
+
+function idGenerator() {
+	let id = '';
+	let characters =
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	let charactersLength = characters.length;
+	for (let i = 0; i < 16; i++) {
+		id += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	return id;
+}
+
+import { treatments } from './treatments.ts';
+import Icon from '../public/Icon.astro';
+
+type Filter = {
+	limit?: number;
+	name?: (typeof treatments)[number]['name'][];
+	type?: 'NHS' | 'Private';
+};
+
+interface Props {
+	filter?: Filter;
+	toggles?: boolean;
+}
+
+const properties = Astro.props;
+---
+
+<div
+	class="mx-auto grid w-full grid-cols-1 items-center justify-center gap-4 rounded-md py-8 md:grid-cols-2 md:gap-2 lg:grid-cols-4"
+>
+	{
+		treatments?.map((treatment, index) => (
+			<Link
+				id={`treatment-${idGenerator()}`}
+				href={`treatments/${treatment.href}`}
+				class={`flex h-full shrink flex-col bg-white duration-150 hover:brightness-90 md:rounded-md ${
+					properties['filter']?.limit
+						? properties['filter']?.limit <= index
+							? 'hidden'
+							: null
+						: null
+				}`}
+			>
+				<img
+					src={'/images/treatments/' + treatment.image.src}
+					alt={treatment.image.alt}
+					class="w-full object-cover brightness-75 md:rounded-t-md"
+					transition:name={treatment.href}
+					transition:animate="morph"
+				/>
+
+				<div class="flex h-full flex-col gap-4 p-8">
+					<Text
+						type="title-sm"
+						class="flex flex-row items-center gap-2"
+					>
+						{treatment.name} <Icon type="chevron-right" />
+					</Text>
+					<Text>{treatment.description}</Text>
+				</div>
+			</Link>
+		))
+	}
+</div>
+
+{
+	properties['toggles'] == true ? (
+		properties['filter']?.limit ? (
+			<div
+				id="treatment"
+				class="mx-auto flex w-full flex-row items-center justify-center"
+			>
+				<Button style="primary" id={`treatment`}>
+					View all our treatments
+				</Button>
+			</div>
+		) : null
+	) : null
+}
+
+<script>
+	['astro:load', 'load'].forEach((event) =>
+		document.addEventListener(event, function () {
+			var button_container = document.querySelector('div#treatment');
+
+			var button = document.querySelector('button#treatment');
+			var treatments_containers = document.querySelectorAll(
+				'a[id ^="treatment-"]'
+			);
+			button?.addEventListener('click', function () {
+				treatments_containers.forEach(function (treatments_container) {
+					treatments_container.classList.remove('hidden');
+				});
+
+				button_container?.classList.add('hidden');
+			});
+		})
+	);
+</script>

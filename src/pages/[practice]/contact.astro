@@ -1,0 +1,62 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Text from '../../components/public/Text.astro';
+import Awards from '../../components/private/Awards.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="Contact Us" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">Contact Us</Fragment>
+	</Hero>
+
+	<Section class="bg-gray6">
+		<Fragment slot="title">Address</Fragment>
+		<Fragment slot="caption"></Fragment>
+
+		<Fragment slot="body">
+			<div class="px-8 pb-16">
+				<Text type="body" weight="normal">
+					We are located at 69 - 75 Radford Road, Hyson Green,
+					Nottingham NG7 5DR
+				</Text>
+
+				<br />
+
+				<Text type="body" weight="normal">
+					Our practice is located in the centre of Hyson Green and has
+					excellent commuter links and details of the local frequent
+					bus routes are available from the Practice Receptionists
+					From Nottingham City Centre from Lower Parliament Street,
+					turn left onto Glasshouse Street (A60) At traffic signals
+					turn left onto the A60 signposted M1, Mansfield At traffic
+					signals continue forward onto Mansfield Road - A60 At
+					traffic signals continue forward onto the A60 At the
+					roundabout take the 1st exit onto the A6130 signposted M1
+					Matlock, Derby At the next roundabout take the 1st exit onto
+					the A6130 At the 3rd set of traffic signals turn left onto
+					Radford Road and the practice is located on the right-hand
+					side There is parking by way of street parking and public
+					car park
+				</Text>
+			</div>
+		</Fragment>
+	</Section>
+
+	<Awards slot="body" />
+	<!-- Other Awards -->
+</Page>

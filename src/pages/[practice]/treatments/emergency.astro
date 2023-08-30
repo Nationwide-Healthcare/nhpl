@@ -1,0 +1,84 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Link from '../../../components/public/Link.astro';
+import Button from '../../../components/public/Button.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Emergency';
+});
+---
+
+<Page title="Emergency" description="" keywords="">
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section class="bg-gray6" size="lg">
+		<Fragment slot="title">Who do we see</Fragment>
+		<Fragment slot="caption"></Fragment>
+
+		<Fragment slot="body">
+			<Text>
+				We accept and treat patients who present themselves with dental
+				emergencies whenever we can and whenever we have clinical
+				capacity. We accept and treat patients even if they're not
+				registered with our practice
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">How to see us</Fragment>
+		<Fragment slot="caption"></Fragment>
+
+		<Fragment slot="body">
+			<Text>
+				To be seen in the event of an emergency, simply call 111 or
+				contact the practice either by phone or in person and we will
+				try our best to provide treatment for your situation.
+			</Text>
+
+			<Text type="body" weight="normal" class="hidden md:block">
+				You can contact the practice at <Link
+					class="underline"
+					href={'tel:01159700007'}
+				>
+					0115 970 0007
+				</Link>
+			</Text>
+
+			<div class="mt-4 flex flex-row gap-4 md:hidden">
+				<Button style="secondary">Call Us</Button>
+				<Button style="secondary">Call 111</Button>
+			</div>
+		</Fragment>
+	</Section>
+</Page>

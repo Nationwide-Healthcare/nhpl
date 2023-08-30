@@ -1,0 +1,99 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Crowns';
+});
+---
+
+<Page
+	title="Tooth Removal"
+	description="Learn more about Tooth Removal"
+	keywords="removal, extraction, tooth removal, remove, take out"
+>
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What are Crowns?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				A crown is a small, permanent cap which is placed over your
+				tooth to restore the tooth's structure
+			</Text>
+			<Text>
+				Crowns help to preserve the existing, natural tooth as well as
+				restoring the tooths functionality and appearance
+			</Text>
+			<Text>
+				A crown may be needed if your tooth is significantly damaged or
+				has a weak structure following certain treatments such a root
+				canal treatment
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">How it works</Fragment>
+		<Fragment slot="body">
+			<Text>It tends to require two visits for a crown to be fitted</Text>
+			<br />
+			<Text type="title-sm">First Visit</Text>
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						Your dentist will remove any weakened or damaged parts
+						of the tooth
+					</li>
+					<li>Your dentist will take an impression of your tooth</li>
+					<li>
+						Your dentist will fit a temporary, tooth coloured crown
+					</li>
+				</ul>
+			</Text>
+			<br />
+			<Text type="title-sm">Second Visit</Text>
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Your dentist will remove the temporary crown</li>
+					<li>
+						Your dentist will fit and cement the new permanent crown
+					</li>
+					<li>
+						Your dentist will ensure the crown fits properly by
+						examining your bite after the addition of the crown
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

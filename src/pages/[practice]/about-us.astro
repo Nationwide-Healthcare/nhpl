@@ -1,0 +1,73 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Text from '../../components/public/Text.astro';
+import Awards from '../../components/private/Awards.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Team from '../../components/private/Team.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">About Us</Fragment>
+	</Hero>
+
+	<Section class="bg-gray6" size="lg">
+		<Fragment slot="title">Our Vision</Fragment>
+
+		<Fragment slot="body">
+			<Text type="body" weight="normal">
+				Seven Dental is a modern, diverse, and multi-cultural dental
+				practice that has been designed with setting the Gold Standard
+				in dental care provision in mind and consistently demonstrates
+				steadfast dedication and commitment to providing a highly
+				professional and friendly service, to both NHS and Private
+				patients alike.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" id="team">
+		<Fragment slot="title">Our Team</Fragment>
+
+		<Fragment slot="body">
+			<Text type="body" weight="normal">
+				Our team of dental professionals are all highly skilled and
+				qualified in their respective fields of expertise. They are
+				committed to continuing their professional development and
+				regularly attend courses and seminars to ensure that they are
+				kept up to date with the latest developments in dentistry.
+			</Text>
+
+			<Team />
+		</Fragment>
+	</Section>
+
+	<Section class="bg-gray6" size="lg">
+		<Fragment slot="title">Multi-Award Winning Dentistry</Fragment>
+		<Fragment slot="caption">
+			Practice Name is a modern, diverse and multi-cultural dental
+			practice that has been designed with setting the Gold Standard in
+			Dental Care provision in mind and consistently demonstrates
+			steadfast dedication and commitment to providing a highly
+			professional and friendly service to both NHS and Private patients
+			alike.
+		</Fragment>
+
+		<Awards slot="body" />
+		<!-- Other Awards -->
+	</Section>
+</Page>

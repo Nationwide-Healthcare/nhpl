@@ -1,0 +1,110 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Fillings';
+});
+---
+
+<Page title="Fillings" description="" keywords="">
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What are Fillings?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Fillings are used to fill cavities - holes in your tooth -
+				caused by decay
+			</Text>
+			<Text>
+				NHS Fillings use a silver coloured material known as Amalgam,
+				which is made up of mixture of metals such as silver, tin and
+				copper
+			</Text>
+			<Text>
+				Private Fillings use a tooth coloured material known as
+				Composite which is made up of a mixture of resin and glass.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Key Benefits</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Fillings prevent toothache, bad breath, infection, and even the
+				loss of teeth which can result from a cavity or damaged tooth.
+			</Text>
+
+			<Text>Some signs you may need a filling include:</Text>
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Toothache</li>
+					<li>Sudden pain when chewing</li>
+					<li>Sensitivity to hot or cold food and drink</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What to expect?</Fragment>
+		<Fragment slot="body">
+			<Text>You can expect the following during a filling:</Text>
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						Your dentist will numb the area around the tooth with a
+						local anaesthetic
+					</li>
+					<li>
+						Your dentist will remove any decayed or damaged parts of
+						the tooth
+					</li>
+					<li>
+						Your dentist will prepare the tooth for the filling by
+						cleaning and drying the area
+					</li>
+					<li>
+						Your dentist will fill the cavity or damage with filling
+						material
+					</li>
+					<li>
+						Your dentist will ensure that your bite and overall feel
+						of the mouth is right
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

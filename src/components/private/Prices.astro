@@ -1,0 +1,57 @@
+---
+import Text from '../public/Text.astro'
+
+import { treatments } from './treatments.ts'
+
+interface Props {
+	filter?: (typeof treatments)[number]['name'][]
+	toggles?: boolean
+}
+
+const properties = Astro.props
+---
+
+<div class="mx-auto flex w-full max-w-screen-md flex-col items-center justify-center md:py-16">
+	{
+		treatments.map((treatment, index) => {
+			return properties.filter == undefined || properties.filter?.includes(treatment.name) ? (
+				<div class="w-full">
+					<div
+						class={
+							'flex w-full flex-row gap-4 px-8 py-4 ' +
+							(properties.filter != undefined || index % 2 == 0
+								? 'bg-white'
+								: 'bg-gray6')
+						}
+					>
+						<Text type="body" weight="bold">
+							{treatment.name}
+						</Text>
+					</div>
+
+					{treatment.costs.map((cost) => {
+						return (
+							<div
+								class={
+									'flex w-full flex-row gap-4 px-8 py-4 ' +
+									'border-t-2 border-gray5 ' +
+									(properties.filter != undefined || index % 2 == 0
+										? 'bg-white'
+										: 'bg-gray6')
+								}
+							>
+								<Text type="body" weight="normal">
+									{cost.type}{' '}
+									{cost.description ? '(' + cost.description + ')' : ''}
+								</Text>
+								<Text type="body" weight="normal" class="ml-auto">
+									{cost.cost}
+								</Text>
+							</div>
+						)
+					})}
+				</div>
+			) : null
+		})
+	}
+</div>

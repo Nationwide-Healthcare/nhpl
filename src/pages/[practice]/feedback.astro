@@ -1,0 +1,221 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Button from '../../components/public/Button.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Link from '../../components/public/Link.astro';
+import Text from '../../components/public/Text.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">Feedback</Fragment>
+		<Fragment slot="body">
+			<Text>
+				We want all our patients to be pleased with the service they
+				receive, so we take feedback seriously. Should a patient decide
+				to give us feedback, we will respond to it promptly and
+				courteously. Our aim is to respond to the matter as quickly as
+				possible following the agreed procedure and, wherever possible,
+				to the satisfaction of the patient.
+			</Text>
+		</Fragment>
+	</Hero>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">Our Approach</Fragment>
+		<Fragment slot="body">
+			<Text>
+				A complaint may indicate a failing on our part, we take all
+				complaints as positive feedback which we can learn from and make
+				improvements to our service. Our staff receive training and
+				guidance in handling complaints and we adopt a no blame and
+				without prejudice approach when investigating a complaint,
+				especially where individuals are identified with the aim of
+				reaching a satisfactory conclusion. We will, at all times, be
+				polite and respectful to our patients.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Feedback Procedure</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Patients have the option to discuss their feedback with either
+				the Practice Reception Team or the Patient Relations Team at the
+				NHPL Head Office.
+			</Text>
+
+			<Text class="hidden md:block">
+				<ul class="hidden list-disc flex-col gap-4 pl-4 md:flex">
+					<li>
+						The Practice Reception Team can be contacted at <Link
+							class="underline"
+							href="tel:01159700007"
+						>
+							0115 970 0007
+						</Link>
+					</li>
+					<li>
+						The NHPL Patient Relations Team can be contacted at <Link
+							class="underline"
+							href="tel:01159790909"
+						>
+							0115 979 0909
+						</Link>
+					</li>
+				</ul>
+			</Text>
+
+			<Link class="md:hidden" href="tel:01159700007">
+				<Button style="primary">
+					Call the Practice Reception Team
+				</Button>
+			</Link>
+
+			<Link class="md:hidden" href="tel:01159790909">
+				<Button style="primary">Call the Patient Relations Team</Button>
+			</Link>
+
+			<Text>
+				Patients also have the option to submit their feedback to the
+				Local Area Team at NHS England and NHS Improvement, PO Box
+				16738, Redditch, B97 9PT.
+			</Text>
+
+			<Text>
+				If a patient chooses to submit their feedback to NHS England and
+				NHS Improvement, the practice will work with NHS England in
+				responding to the matters raised.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">Next Steps</Fragment>
+
+		<Fragment slot="body">
+			<Text>
+				If a patient makes a complaint in person or by telephone, the
+				member of staff receiving the complaint makes an initial record
+				of their concerns and checks this for accuracy with the patient.
+				The patient is given a copy of the record and the original is
+				passed to the appropiate persons. The patient is asked whether
+				they would like to be seen immediately. Otherwise the patient is
+				advised as to when a meeting can be arranged either in person or
+				by telephone.
+			</Text>
+
+			<Text>
+				If the patient complains in writing or by e-mail, the complaint
+				will be forwarded immediately to the Complaints Department at
+				the NHPL Head Office.
+			</Text>
+
+			<Text>
+				Complaints about clinical care or the amount charged for
+				treatment will be referred to the dentist concerned, unless the
+				patient requests otherwise.
+			</Text>
+
+			<Text>
+				All feedback is acknowledged in writing as soon as possible upon
+				being received. A copy of this code of practice will be sent
+				with the acknowledgement. If the patient has not yet discussed
+				the matter with the dentist they will be offered the opportunity
+				to do so and also be asked how they would like to be kept
+				informed of developments - by letter, e-mail, telephone or
+				face-to-face meetings. The process we will follow in responding
+				to feedback and what the patient requires by way of an outcome
+				will be discussed with the patient and along with the
+				anticipated timescale.
+			</Text>
+
+			<br />
+
+			<Text>
+				We will investigate any complaints speedily and efficiently and,
+				as far a reasonably practicable, will keep the patient informed
+				of our progress. We aim for investigations to be completed
+				within 25 working days.
+			</Text>
+
+			<Text>
+				On completion of our investigation, we will provide the patient
+				with a full written report, which will include:
+			</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						An explanation of how the complaint has been considered
+					</li>
+					<li>
+						The conclusions reached in respect of each specific part
+						of the complaint
+					</li>
+					<li>Details of any necessary remedial action</li>
+					<li>
+						Specify whether the practice is satisfied with any
+						action it has already taken or will be taking as a
+						result of the complaint.
+					</li>
+				</ul>
+			</Text>
+
+			<br />
+
+			<Text>
+				Comprehensive records are kept of any complaint received as well
+				as any actions taken to improve services as a consequence of a
+				complaint.
+			</Text>
+
+			<br />
+
+			<Text>
+				Should the patient not be satisifed with our response, the
+				complaint may be referred to:
+			</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						NHS England and NHS Improvement, PO Box 16738, Redditch,
+						B97 9PT
+					</li>
+					<li>
+						Parliamentary and Health Service Ombudsman, Millbank
+						Tower, Millbank London SW1P 4QP, telephone: 0345 015
+						4033 or www.ombudsman.org.uk for complaints about NHS
+						treatment.
+					</li>
+					<li>
+						The Dental Complaints Service, The Lansdowne Building, 2
+						Lansdowne Road, Croydon, Greater London CR9 2ER, 08456
+						120 540 or www.dentalcomplaints.org.uk for complaints
+						about private treatment.
+					</li>
+					<li>
+						The General Dental Council, 37 Wimpole Street, London,
+						W1M 8DQ the dentists' registration body.
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

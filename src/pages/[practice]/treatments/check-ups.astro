@@ -1,0 +1,100 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Check Ups';
+});
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What is a Check Up?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Dental Check Ups consist of your dentist examining your teeth
+				and gums to check for existing problems and prevent future
+				problems.
+			</Text>
+
+			<Text>
+				Your dentist will suggest how often you need a checkup, but it's
+				common for check ups to be needed around every 6 months.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Key Benefits</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Check Ups allow you to gain professional insight into the state
+				of your teeth and gums.
+			</Text>
+
+			<Text>
+				Even if you believe your teeth and gums are healthy, it's best
+				to have them examined by a professional in case there are any
+				hidden problems.
+			</Text>
+
+			<Text>
+				By not having regular check ups, you are risking the development
+				of potentially irreversable complications to your oral heath.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What to Expect</Fragment>
+		<Fragment slot="body">
+			<Text>At every check up, your dentist will:</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Ask and advise you about your general health</li>
+					<li>
+						Ask about any problems regarding your teeth and gums
+					</li>
+					<li>Examine your teeth and gums</li>
+					<li>
+						Offer personalised advice regarding how to improve your
+						teeth and gums
+					</li>
+					<li>Schedule further check ups if recommended</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

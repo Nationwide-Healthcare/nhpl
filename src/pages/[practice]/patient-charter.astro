@@ -1,0 +1,161 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Button from '../../components/public/Button.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Testimonials from '../../components/private/Testimonials.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Link from '../../components/public/Link.astro';
+import Awards from '../../components/private/Awards.astro';
+import Team from '../../components/private/Team.astro';
+import Text from '../../components/public/Text.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">Patient Charter</Fragment>
+	</Hero>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">Our Practice Quality Assurance Policy</Fragment>
+		<Fragment slot="body">
+			<Text>We promise to:</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						Our practice aims to provide dental care of a consistent
+						quality, for all patients. We have management systems to
+						help us and which define each practice member's
+						responsibilities when looking after you.
+					</li>
+					<li>
+						In proposing treatment we will take account of your own
+						wishes. We will explain options, where appropriate, and
+						costs, so that you can make an informed choice. We will
+						always explain what we are doing.
+					</li>
+					<li>
+						At our practice, all patients, at all times, are treated
+						with the utmost of dignity and respect.
+					</li>
+					<li>
+						We will do all we can to look after your general health.
+						We will ask you about your general health, and about any
+						medicines being taken. This helps us to treat you
+						safely. We keep all information about you confidential.
+					</li>
+					<li>
+						A chaperone (Dental Care Professional) is present
+						throughout all patient appointments with a Dental
+						Surgeon.
+					</li>
+					<li>
+						All Clinical Care provided is evidence-based and the
+						appropriate guidelines and principles of research
+						governance are applied when required.
+					</li>
+					<li>
+						Contamination control is also essential to the safety of
+						our patients. Every practice member receives training in
+						practice systems for contamination control.
+					</li>
+					<li>
+						We screen all patients for mouth cancer at routine
+						check-ups. We ask patients about tobacco and alcohol use
+						because they increase your oral cancer risk.
+					</li>
+					<li>
+						Practice working methods are reviewed regularly at
+						meetings of all staff. We encourage all staff to make
+						suggestions for improving the care we give patients.
+					</li>
+					<li>
+						We regularly ask patients for their views on our
+						services. We have systems for dealing promptly with
+						patient complaints and for ensuring that lessons are
+						learnt from any mistakes that we make
+					</li>
+					<li>
+						All dentists in the practice take part in continuing
+						professional education, meeting the General Dental
+						Council's requirements. We aim to keep up-to-date with
+						current thinking on all aspects of general dentistry,
+						including preventive care which reduces your need for
+						treatment.
+					</li>
+					<li>
+						All staff joining the practice are given training in
+						practice-wide procedures. Once a year, there is an
+						individual review of training needs for everyone in the
+						practice.
+					</li>
+					<li>
+						All members of the practice know of the need to ensure
+						that dentists are working safely. In the unlikely event
+						that a dentist in this practice becomes unfit to
+						practise, we have systems to ensure that concerns are
+						investigated and, if necessary, acted upon.
+					</li>
+					<li>
+						If you have any questions or queries in relation to this
+						policy, or if any aspect is unclear, please speak to Mrs
+						Tina Bentley, Clinical Quality and Care Manager.
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Our Team</Fragment>
+		<Fragment slot="caption">
+			Meet the amazing team dedicated to providing only the best treatment
+			for you
+		</Fragment>
+
+		<Team slot="body" limit={4} />
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Multi-Award Winning Dentistry</Fragment>
+		<Fragment slot="caption">
+			Seven Dental is a modern, diverse and multi-cultural dental practice
+			that has been designed with setting the Gold Standard in Dental Care
+			provision in mind and consistently demonstrates steadfast dedication
+			and commitment to providing a highly professional and friendly
+			service to both NHS and Private patients alike.
+		</Fragment>
+
+		<Fragment slot="body">
+			<Awards />
+		</Fragment>
+	</Section>
+
+	<Section class="mb-0 bg-gray6 pb-0" size="lg">
+		<Fragment slot="title">Testimonials</Fragment>
+		<Fragment slot="caption">
+			Don't just take it from us. See what our patients say.
+		</Fragment>
+
+		<Fragment slot="buttons">
+			<Button style="secondary">
+				<Link href={null}>See more on Google</Link>
+			</Button>
+		</Fragment>
+
+		<Testimonials slot="body" />
+	</Section>
+</Page>

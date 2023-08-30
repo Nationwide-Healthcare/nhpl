@@ -1,0 +1,128 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Periodontal';
+});
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What is Gum Disease?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Gum disease is a common condition affecting the tissues around
+				your teeth.
+			</Text>
+
+			<Text>
+				Gum disease can cause discomfort and if left untreated can lead
+				to gum recession and tooth loss.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Signs you may have Gum Disease</Fragment>
+		<Fragment slot="body">
+			<Text>
+				There are some symptoms that could indicate if you have gum
+				disease:
+			</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Bleeding gums when you eat</li>
+					<li>Bleeding gums when you brush</li>
+					<li>Swollen gums</li>
+					<li>Bad breath or taste in the mouth</li>
+					<li>Teeth becoming loose or falling out</li>
+					<li>Shrinking gums</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What to Expect</Fragment>
+		<Fragment slot="body">
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Your dentist will examine your teeth and gums</li>
+					<li>Your dentist will take X-Rays if necessary</li>
+				</ul>
+			</Text>
+
+			<br />
+
+			<Text>
+				Any further treatment will depend on the severity of the gum
+				disease:
+			</Text>
+
+			<br />
+
+			<Text type="title-sm">Early Stage Gum Disease</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						Your dentist will recommend advice on your oral health
+					</li>
+					<li>
+						Your dentist may recommend certain treatments such as
+						teeth cleaning
+					</li>
+				</ul>
+			</Text>
+
+			<br />
+
+			<Text type="title-sm">Late Stage Gum Disease</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						Your dentist may recommend certain treatments such as
+						deep gum cleaning
+					</li>
+					<li>Your dentist may prescribe antibiotics</li>
+					<li>You may require gum surgery</li>
+					<li>You may require tooth extraction</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

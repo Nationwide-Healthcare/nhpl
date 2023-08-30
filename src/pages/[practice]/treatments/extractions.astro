@@ -1,0 +1,151 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Extractions';
+});
+---
+
+<Page
+	title="Tooth Removal"
+	description="Learn more about Tooth Removal"
+	keywords="removal, extraction, tooth removal, remove, take out"
+>
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What is Tooth Removal?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Tooth Removal consists of extracting irreperably damaged or
+				decayed teeth.
+			</Text>
+			<Text>
+				Your dentist will make every effort to restore the tooth before
+				considering tooth extraction.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Why would I need Tooth Removal?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				There are several reasons you may need a tooth to be removed:
+			</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						When there's not enough space to accomodate for all your
+						teeth
+					</li>
+					<li>An abscess is a collection of pus</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What to expect?</Fragment>
+		<Fragment slot="body">
+			<Text>You should expect your dentist to do the following:</Text>
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Ask you about your medical history</li>
+					<li>Ask you about your dental history</li>
+					<li>
+						Ask you about any pain or discomfort you have been
+						experiencing
+					</li>
+					<li>Advise the best course of action</li>
+					<li>
+						If necessary, carry out the tooth removal under local
+						anaesthetic
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Will it hurt?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				You should not feel pain during the procedure but you may feel
+				some pressure.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What to do after Tooth Removal?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>For the first 24 hours, avoid hot food and drinks</li>
+					<li>
+						For the first 24 hours, avoid rinsing your mouth, with
+						or without mouthwash
+					</li>
+					<li>
+						After 24 hours, gently rinse your mouth with warm salt
+						water after each meal
+					</li>
+					<li>
+						If the socket bleeds, apply pressure by biting down on a
+						clean, rolled up handkerchief placed over the affected
+						area until bleeding stops
+					</li>
+					<li>
+						If the socket bleeds, apply pressure by biting down on a
+						clean, rolled up handkerchief placed over the affected
+						area until bleeding stops
+					</li>
+					<li>
+						Try to eat softer foods for a few days until you're used
+						to chewing with your remaining teeth
+					</li>
+					<li>
+						Brush gently with a soft toothbrush, taking special care
+						to not disrupt the blood clot in the socket
+					</li>
+					<li>
+						Take any antibiotics you've been prescribed as
+						instructed
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

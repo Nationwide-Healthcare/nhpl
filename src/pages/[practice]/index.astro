@@ -1,0 +1,179 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Button from '../../components/public/Button.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Testimonials from '../../components/private/Testimonials.astro';
+import Treatments from '../../components/private/Treatments.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Link from '../../components/public/Link.astro';
+import Awards from '../../components/private/Awards.astro';
+import Team from '../../components/private/Team.astro';
+import Text from '../../components/public/Text.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<div class="w-full bg-blue">
+		<div class="mx-auto max-w-screen-lg px-2 py-4">
+			<Text class="text-center text-white">
+				We are currently accepting new NHS and Private patients, please <Link
+					href="notices"
+					class="underline"
+				>
+					click here
+				</Link> for further information.
+			</Text>
+		</div>
+	</div>
+
+	<Hero>
+		<Fragment slot="title">
+			Welcome to <div class="inline-block text-blue">{practice.name}</div>
+		</Fragment>
+		<Fragment slot="body">
+			<Text type="title-xs" weight="light">
+				Setting the Gold Standard in Dental Care
+			</Text>
+		</Fragment>
+
+		<Fragment slot="buttons">
+			<Link class="text-body text-blue" href="/contact">
+				<Button style="primary" size="large">Book now</Button>
+			</Link>
+			<Link href="/about-us">Learn more</Link>
+		</Fragment>
+	</Hero>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">
+			Well established, with long serving staff
+		</Fragment>
+		<Fragment slot="body">
+			<Text>
+				At Seven Dental in the centre of Nottinghamshire, we aim to meet
+				our patient's expectations and deliver exceptional patient care
+				that puts our patients at the heart of everything we do. We aim
+				to deliver this approach in all aspects of our service to you.
+			</Text>
+
+			<Text>
+				In our practice you will find up to 20 highly qualified dentists
+				- including dentists that focus on cosmetic dental care
+				provision, and staff members who aim to deliver the very best
+				quality in patient care to you throughout Nottinghamshire. In
+				addition to this we also offer our patients flexible working
+				hours, which takes into consideration the needs of our patients
+				and their families with busy lives.
+			</Text>
+
+			<Text>
+				If you would like straighter teeth, or a brighter, whiter smile,
+				or even if you would prefer to have natural teeth coloured
+				fillings instead of the traditional grey or black fillings,
+				please call us on 0115 970 0007 and speak to one of our friendly
+				reception team and ask for a cosmetic care consulation - this is
+				currently available for a limited period only at a cost of
+				£30.00 that is payable in advance to see a dentist to discuss
+				your needs.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section class="bg-blue text-white" size="lg">
+		<Fragment slot="title">Emergencies</Fragment>
+		<Fragment slot="caption">
+			Whether or not you are a registered patient, we are here to help.
+		</Fragment>
+
+		<Fragment slot="body">
+			<Text type="body" weight="normal">
+				To be seen in the event of an emergency, simply call 111 or
+				contact the practice either by phone or in person and we will
+				try our best to provide treatment for your situation.
+			</Text>
+
+			<Text type="body" weight="normal" class="hidden md:block">
+				You can contact the practice at <Link
+					class="text-white underline"
+					href={'tel:01159700007'}
+				>
+					0115 970 0007
+				</Link>
+			</Text>
+
+			<div class="mt-4 flex flex-row gap-4 md:hidden">
+				<Button style="secondary">Call Us</Button>
+				<Button style="secondary">Call 111</Button>
+			</div>
+		</Fragment>
+	</Section>
+
+	<Section class="bg-gray6" size="lg">
+		<Fragment slot="title">Our Treatments</Fragment>
+
+		<Fragment slot="caption">
+			View all the treatments we offer here at Seven Dental
+		</Fragment>
+
+		<Fragment slot="body">
+			<Treatments
+				toggles={true}
+				filter={{
+					limit: 4,
+				}}
+			/>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Our Team</Fragment>
+		<Fragment slot="caption">
+			Meet the amazing team dedicated to providing only the best treatment
+			for you
+		</Fragment>
+
+		<Team slot="body" limit={4} />
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Multi-Award Winning Dentistry</Fragment>
+		<Fragment slot="caption">
+			Seven Dental is a modern, diverse and multi-cultural dental practice
+			that has been designed with setting the Gold Standard in Dental Care
+			provision in mind and consistently demonstrates steadfast dedication
+			and commitment to providing a highly professional and friendly
+			service to both NHS and Private patients alike.
+		</Fragment>
+
+		<Fragment slot="body">
+			<Awards />
+		</Fragment>
+	</Section>
+
+	<Section class="mb-0 bg-gray6 pb-0" size="lg">
+		<Fragment slot="title">Testimonials</Fragment>
+		<Fragment slot="caption">
+			Don't just take it from us. See what our patients say.
+		</Fragment>
+
+		<Fragment slot="buttons">
+			<Button style="secondary">
+				<Link href={null}>See more on Google</Link>
+			</Button>
+		</Fragment>
+
+		<Testimonials slot="body" />
+	</Section>
+</Page>

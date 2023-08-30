@@ -1,0 +1,112 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Bridges';
+});
+---
+
+<Page
+	title="Tooth Removal"
+	description="Learn more about Tooth Removal"
+	keywords="removal, extraction, tooth removal, remove, take out"
+>
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment?.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What are Bridges?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				A bridge is a permanent replacement for a missing tooth or teeth
+				which is supported by surrounding teeth
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Key Benefits</Fragment>
+		<Fragment slot="body">
+			<Text>Bridges are a replacement for missing teeth</Text>
+			<Text>
+				Bridges are ideal because they don't require surgery like
+				implants and they're not removable like dentures
+			</Text>
+			<Text>
+				Bridges are extremely beneficial as they allow you to replace
+				multiple teeth, which improves their function and appearance
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What to expect</Fragment>
+		<Fragment slot="body">
+			<Text>
+				It tends to require two visits for a bridge to be fitted
+			</Text>
+			<br />
+			<Text type="title-sm">First Visit</Text>
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						Your dentist will take an impression of your teeth and
+						gums to create a bridge which best fits your mouth
+					</li>
+					<li>
+						Your dentist may fit a temporary, tooth coloured crown
+						or bridge
+					</li>
+				</ul>
+			</Text>
+			<br />
+			<Text type="title-sm">Second Visit</Text>
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Your dentist will remove any temporary treatment</li>
+					<li>
+						YYour dentist will provide local anaesthetic to prevent
+						any discomfort during the fitting
+					</li>
+					<li>
+						Your dentist will fit the new, permanent, custom made
+						bridge
+					</li>
+					<li>
+						Your dentist will ensure the bridge fits properly by
+						examining your bite after the addition of the bridge
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

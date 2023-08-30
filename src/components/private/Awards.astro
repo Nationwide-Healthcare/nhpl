@@ -1,0 +1,7 @@
+---
+import { awards } from './awards.ts'
+---
+
+<div class="mx-auto flex flex-row items-center justify-start gap-8 overflow-x-auto px-8 py-16">
+	{awards.map((award) => <img class="w-[100px]" src={'./images/awards/' + award.image} />)}
+</div>

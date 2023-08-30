@@ -1,0 +1,67 @@
+---
+import Text from '../public/Text.astro';
+import Button from '../public/Button.astro';
+import Link from '../public/Link.astro';
+
+import { practices } from './practices.ts';
+
+interface Props {
+	filter?: string[];
+	limit?: number;
+}
+
+const properties = Astro.props;
+
+/*
+properties.filter
+	? (team = team.filter(
+			(member) => properties.filter != undefined && properties.filter.includes(member.name)
+	  ))
+	: null
+*/
+---
+
+<div
+	class="grid w-full grid-cols-1 items-center justify-center gap-4 py-8 sm:grid-cols-2 md:grid-cols-3"
+>
+	{
+		practices.map((practice, index) => (
+			<Link
+				href={`${practice.href}/`}
+				class={
+					'flex h-full flex-col items-center justify-start gap-4 rounded-lg bg-white pb-4 text-center duration-150 hover:shadow-lg ' +
+					(properties.limit
+						? properties.limit != undefined &&
+						  index >= properties.limit
+							? 'hidden'
+							: null
+						: null)
+				}
+			>
+				<img
+					class="mb-auto w-full rounded-t-lg object-cover"
+					src={`./images/practices/${practice.image}`}
+				/>
+				<Text type={'body'} weight={'bold'}>
+					{practice.name}
+				</Text>
+				<Text type={'body'} weight={'normal'}>
+					{practice.location}
+				</Text>
+			</Link>
+		))
+	}
+</div>
+
+{
+	properties.limit ? (
+		<div
+			id="team"
+			class="mx-auto flex w-full flex-row items-center justify-center"
+		>
+			<Button style="primary" id="team">
+				Meet the full team
+			</Button>
+		</div>
+	) : null
+}

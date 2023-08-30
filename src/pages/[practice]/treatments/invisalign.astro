@@ -1,0 +1,135 @@
+---
+import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/private/Page.astro';
+import Text from '../../../components/public/Text.astro';
+import Section from '../../../components/public/Section.astro';
+import Prices from '../../../components/private/Prices.astro';
+
+import { practices } from '../../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+import { treatments } from '../../../components/private/treatments.ts';
+
+const treatment = treatments.find((treatment) => {
+	return treatment.name === 'Invisalign';
+});
+---
+
+<Page
+	title="Tooth Removal"
+	description="Learn more about Tooth Removal"
+	keywords="removal, extraction, tooth removal, remove, take out"
+>
+	<Header name="main" />
+
+	<div
+		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
+	>
+		<img
+			src={`/images/treatments/${treatment?.image.src}`}
+			alt={treatment.image.alt}
+			class="w-full object-cover brightness-50"
+			transition:name={`${treatment?.href}`}
+		/>
+		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+			{treatment?.name}
+		</Text>
+	</div>
+
+	<Prices filter={[`${treatment?.name}`]} />
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">What is Invisalign?</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Invisalign™ treatment employs custom made invisible braces
+				alongside advanced computerised technology to realign and
+				straighten teeth without the need to wear a metal or fixed
+				brace.
+			</Text>
+			<Text>
+				The 'aligners' or straighteners are comfortable, painless to
+				wear and virtually invisible.
+			</Text>
+			<Text>
+				They gradually move your teeth into the required position in
+				order to achieve a straight and beautiful smile.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Key Benefits</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Invisalign can hugely benefit many aspects of your life:
+			</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Crooked Teeth</li>
+					<li>Gaps and spaces between teeth</li>
+					<li>Overcrowded teeth</li>
+					<li>Misaligned teeth</li>
+					<li>Vertically underlapping or overlapping teeth</li>
+					<li>Abnormal protrusion of lower jaw</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">How does it work?</Fragment>
+		<Fragment slot="body">
+			<Text>There are three stages to your Invisalign Treatment:</Text>
+
+			<br />
+
+			<Text type="title-sm">Consultation</Text>
+
+			<Text>
+				Your treatment plan will begin with a consultation with our
+				Invisalign™ accredited dentist who will assess your case and
+				discuss your treatment option with you. This will also allow you
+				the opportunity to ask any questions you may have about
+				Invisalign™ treatment and planning with your dentist and
+				clinical team.
+			</Text>
+
+			<br />
+
+			<Text type="title-sm">Personalised Treatment Plan</Text>
+
+			<Text>
+				You will be provided with a detailed treatment plan outlining
+				how each of your clear and custom made aligners will change
+				throughout your treatment program. Your treatment will require
+				you to progress to a new set of aligners every few weeks. Each
+				set of aligners will gradually and gently move and reposition
+				your teeth and at the end of each period, you will “graduate” to
+				a new set of custom made aligners. Your progress will be
+				monitored by your dentist throughout your treatment and the aim
+				will be to achieve a lovely straight smile
+			</Text>
+
+			<br />
+
+			<Text type="title-sm">Your New Smile</Text>
+
+			<Text>
+				Your straightened teeth and new smile may take up to one year to
+				achieve although this will vary from one individual to another.
+				However, the Invisalign treatment program will allow you
+				numerous many benefits and advantages over the traditional metal
+				braces treatment affording you as a patient, a large degree of
+				control on a day to day basis with the support and back up of
+				your dentist and clinical team when you require it.
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

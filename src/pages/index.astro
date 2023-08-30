@@ -1,81 +1,116 @@
 ---
-import Head from '../../../components/Head.astro';
-import Header from '../components/Header.astro';
-import SectionHeading from '../../../components/SectionHeading.astro';
-import Text from '../../../components/Text.astro';
-import Hero from '../../../components/Hero.astro';
-import Button from '../../../components/Button.astro';
+import Text from '../components/public/Text.astro';
+import Section from '../components/public/Section.astro';
+import Review from '../components/private/Review.astro';
+import Page from '../components/public/Page.astro';
+import Practices from '../components/private/Practices.astro';
+import Header from '../components/public/layout/Header.astro';
 ---
 
-<html>
-	<Head title="NHPL" description="" keyword="" />
+<Page title="" description="" keywords="">
+	<Header name="main" />
 
-	<body>
-		<Header />
+	<div class="text-center">
+		<Section size="lg">
+			<Fragment slot="body">
+				<div class="text-left">
+					Nationwide Healthcare Providers Limited, (NHPL), owns a
+					group of 20 dental practices located throughout
+					Nottinghamshire, Derbyshire, Leicestershire, Sheffield,
+					South Yorkshire, Wakefield and Barnsley. Please see below
+					for addresses and contact details of each practice.
+				</div>
+			</Fragment>
+		</Section>
 
-		<div class="text-center">
-			<Hero>
-				<Fragment slot="title">
-					Nationwide Healthcare Providers Limited
-				</Fragment>
-				<Fragment slot="body">
-					We are a group of dental practices located throughout
-					England providing NHS and Private dental services.
-				</Fragment>
+		<Section size="lg" class="bg-white">
+			<Fragment slot="body">
+				<div class="text-left">
+					<Text type="body" weight="bold">New NHS Patients</Text>
 
-				<Fragment slot="buttons">
-					<Button style="primary" type="link" href="#locations">
-						Our Locations
-					</Button>
-					<Button style="secondary" type="link" href="/about">
-						View Gallery
-					</Button>
-				</Fragment>
-			</Hero>
-		</div>
+					If you are a patient seeking to make an appointment as an
+					NHS patient at any of our 20 practices, please call the
+					telephone number of the practice that you wish to be seen
+					at, and an appointment will be arranged if possible. It is
+					important to note that due to high demand, an appointment
+					may only be available after a considerable time on a waiting
+					list. Alternatively, some patients may take the option of
+					being seen initially on a Private basis, with the intention
+					of becoming an NHS patient at a later date, when the waiting
+					list is shorter and more easy to manage.
 
-		<div class="bg-gray6 px-4 py-8">
-			<SectionHeading>
-				<Fragment slot="title">Our Mission</Fragment>
-				<Fragment slot="body">
-					The philosophy behind what we do at NHPL
-				</Fragment>
-			</SectionHeading>
+					<br />
+					<br />
 
-			<Text type="body" weight="normal">
-				Our aim is to provide first class NHS and Private services to
-				patients throughout England and to create an excellent
-				environment in which our dental surgeons and clinical teams
-				continuously thrive and develop.
-			</Text>
-		</div>
+					<Text type="body" weight="bold">
+						Our regular attending NHS patients wishing to make an
+						appointment
+					</Text>
 
-		<div class="px-4 py-8">
-			<SectionHeading>
-				<Fragment slot="title">Our Story</Fragment>
-			</SectionHeading>
+					Please simply call your practice on the practice telephone
+					number and an appointment will be arranged for you in the
+					normal way, and this appointment availability will just
+					depend on our clinical capacity for you to be seen. Usually
+					the time to make an appointment varies from a few days to a
+					few weeks for our regular patients.
 
-			<Text type="body" weight="normal" />
-		</div>
+					<br />
+					<br />
 
-		<div class="bg-gray6 px-4 py-8" id="locations">
-			<SectionHeading>
-				<Fragment slot="title">Our Locations</Fragment>
-				<Fragment slot="body">Where to find us</Fragment>
-			</SectionHeading>
+					<Text type="body" weight="bold">
+						Our regular attending NHS patients (in pain)
+					</Text>
+					If you are a patient in pain or discomfort, and you are a regular
+					attender at your dental practice, then normally an NHS appointment
+					can be arranged for you, on the understanding that this is an
+					emergency appointment, where you will be treated on a "sit and
+					wait basis". When a patient is seen on this basis, this can mean
+					that there is a possibility of an increased waiting time from
+					arrival at the practice to being seen by a dentist. Naturally,
+					our teams will do their best for you to be seen as quickly as
+					possible, and this is often within 30 minutes, however this can
+					be up to 3 hours at busier times, so it is important for you
+					to be able to manage your expectations when attending on a sit
+					and wait basis.
+					<br />
+					<br />
 
-			<iframe
-				src="https://www.google.com/maps/d/embed?mid=1MmYerhvF2XgRWICjAPWKKnwiIzA3jPY"
-				width="100%"
-				height="480"></iframe>
-		</div>
+					<Text type="body" weight="bold">New Private Patients</Text>
+					If you are a new patient, and wish to be seen privately, several
+					dental surgeons are able to offer appointments sooner, and these
+					may even be available at short notice and even on the same day.
+					This availability cannot be gauranteed, however, it is a possibility
+					that this can be arranged swiftly. The fee for being seen by
+					a dental surgeon on a private basis in an emergency is normally
+					£50, this is payable at the time of booking the appointment,
+					and this fee includes the cost of seeing the dentist and all
+					necessary X-rays and does not include the cost of any actual
+					treatment need identified.
+				</div>
+			</Fragment>
+		</Section>
+	</div>
 
-		<div class="px-4 py-8">
-			<SectionHeading>
-				<Fragment slot="title">Reviews</Fragment>
-			</SectionHeading>
+	<Section class="bg-gray6" size="lg">
+		<Review slot="body" />
+	</Section>
 
-			<Text type="body" weight="normal" />
-		</div>
-	</body>
-</html>
+	<Section size="lg">
+		<Fragment slot="title">Our Mission</Fragment>
+		<Fragment slot="caption">
+			The philosophy behind what we do at NHPL
+		</Fragment>
+
+		<Fragment slot="body">
+			Our aim is to provide first class NHS and Private services to
+			patients throughout England and to create an excellent environment
+			in which our dental surgeons and clinical teams continuously thrive
+			and develop.
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6" id="practices">
+		<Fragment slot="title">Our Practices</Fragment>
+		<Practices slot="body" />
+	</Section>
+</Page>

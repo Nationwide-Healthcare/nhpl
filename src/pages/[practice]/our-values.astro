@@ -1,0 +1,113 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Button from '../../components/public/Button.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Testimonials from '../../components/private/Testimonials.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Link from '../../components/public/Link.astro';
+import Awards from '../../components/private/Awards.astro';
+import Team from '../../components/private/Team.astro';
+import Text from '../../components/public/Text.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">Our Values</Fragment>
+	</Hero>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">
+			Patients must be able to trust the Dental Team
+		</Fragment>
+		<Fragment slot="body">
+			<Text>
+				To justify that, we as professionals maintain a high standard of
+				practice and care.
+			</Text>
+
+			<br />
+
+			<Text>We promise to:</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>Make the care of patients our first concern</li>
+					<li>Treat every patient politely and considerately</li>
+					<li>Have respect for patients dignity and privacy</li>
+					<li>Listen to patients and respect their views</li>
+					<li>
+						Give patients information in a way which they can
+						understand
+					</li>
+					<li>
+						Respect the rights of patients to be involved fully in
+						decisions about their care
+					</li>
+					<li>Act quickly to protect patients from risks</li>
+					<li>
+						Keep our professional knowledge and skills up to date
+					</li>
+					<li>Be honest and trustworthy</li>
+					<li>Respect and protect confidential information</li>
+					<li>
+						Work with other medical and dental colleagues, to best
+						serve the patients interests
+					</li>
+				</ul>
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Our Team</Fragment>
+		<Fragment slot="caption">
+			Meet the amazing team dedicated to providing only the best treatment
+			for you
+		</Fragment>
+
+		<Team slot="body" limit={4} />
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Multi-Award Winning Dentistry</Fragment>
+		<Fragment slot="caption">
+			Seven Dental is a modern, diverse and multi-cultural dental practice
+			that has been designed with setting the Gold Standard in Dental Care
+			provision in mind and consistently demonstrates steadfast dedication
+			and commitment to providing a highly professional and friendly
+			service to both NHS and Private patients alike.
+		</Fragment>
+
+		<Fragment slot="body">
+			<Awards />
+		</Fragment>
+	</Section>
+
+	<Section class="mb-0 bg-gray6 pb-0" size="lg">
+		<Fragment slot="title">Testimonials</Fragment>
+		<Fragment slot="caption">
+			Don't just take it from us. See what our patients say.
+		</Fragment>
+
+		<Fragment slot="buttons">
+			<Button style="secondary">
+				<Link href={null}>See more on Google</Link>
+			</Button>
+		</Fragment>
+
+		<Testimonials slot="body" />
+	</Section>
+</Page>

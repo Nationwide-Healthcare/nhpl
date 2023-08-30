@@ -1,0 +1,156 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Text from '../../components/public/Text.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">Privacy Policy</Fragment>
+		<Fragment slot="body">
+			<Text>
+				In providing your dental care and treatment, we will ask for
+				information about you and your health. Occasionally, we may
+				receive information from other providers who have been involved
+				in providing your care. This privacy notice describes the type
+				of personal information we hold, why we hold it and what we do
+				with it.
+			</Text>
+		</Fragment>
+	</Hero>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">Overview</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Dr Jamil Ahmad is responsible for keeping secure the information
+				about you that we hold. Those at the practice who have access to
+				your information include dentists and other dental professionals
+				involved with your care and treatment, and the reception staff
+				responsible for the management and administration of the
+				practice.
+			</Text>
+
+			<Text>
+				Our Data Protection Officer, Tina Bentley, ensures that the
+				practice complies with data protection requirements to ensure
+				that we collect, use, store and dispose of your information
+				responsibly. You can contact our data protection officer, Tina
+				Bentley by email at thepracticemanager@7dental.co.uk or by phone
+				on 0115 9790909
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Information we hold</Fragment>
+		<Fragment slot="body">
+			<Text>
+				We hold personal information about you including your name, date
+				of birth, national insurance number, NHS number, address,
+				telephone number and email address. This information allows us
+				to fulfil our contract with you to provide appointments. We will
+				also use the information to send you reminders and recall
+				appointments as we have a legitimate interest to ensure your
+				continuing care and to make you aware of our services.
+			</Text>
+
+			<br />
+
+			<Text>
+				We hold information about your dental and general health, such
+				as
+			</Text>
+
+			<Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>
+						Clinical records made by dentists and other dental
+						professionals involved with your care and treatment
+					</li>
+					<li>
+						X-rays, clinical photographs, digital scans of your
+						mouth and teeth, and study models
+					</li>
+					<li>Medical and dental histories</li>
+					<li>Treatment plans and consent</li>
+					<li>Notes of conversations with you about your care</li>
+					<li>Dates of your appointments</li>
+					<li>
+						Details of any complaints you have made and how these
+						complaints were dealt with
+					</li>
+					<li>
+						Correspondence with you and other health professionals
+						or institutions.
+					</li>
+				</ul>
+			</Text>
+
+			<br />
+
+			<Text>
+				We collect and use this information to allow us to fulfil our
+				contract with you to discuss your treatment options and provide
+				dental care that meets your needs. We also use this information
+				for the legitimate interest of ensuring the quality of the
+				treatment we provide.
+			</Text>
+
+			<Text>
+				We hold information about the fees we have charged, the amounts
+				you have paid and some payment details. This information forms
+				part of our contractual obligation to you to provide dental care
+				and allows us to meet legal financial requirements
+			</Text>
+
+			<Text>
+				Where your dental care is provided under the terms of the NHS,
+				we are required to complete statutory forms to allow payments to
+				be processed. This is an NHS requirement.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">Usage of information</Fragment>
+		<Fragment slot="body">
+			<Text>
+				To provide you with the dental care and treatment that you need,
+				we require up-to-date and accurate information about you.
+			</Text>
+			<Text>
+				We will share your information with the NHS in connection with
+				your dental treatment.
+			</Text>
+			<Text>
+				We may contact you to conduct patient surveys or to find out if
+				you are happy with the treatment you received for quality
+				control purposes.
+			</Text>
+			<Text>
+				We may contact you to conduct patient surveys or to find out if
+				you are happy with the treatment you received for quality
+				control purposes.
+			</Text>
+			<Text>
+				We have CCTV at the practice for the purposes of patient and
+				staff safety.
+			</Text>
+		</Fragment>
+	</Section>
+</Page>

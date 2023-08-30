@@ -1,0 +1,97 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Page from '../../components/private/Page.astro';
+import Text from '../../components/public/Text.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Section from '../../components/public/Section.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">New Patients</Fragment>
+		<Fragment slot="body">
+			See below how to join Seven Dental as a new NHS or Private patient
+		</Fragment>
+	</Hero>
+
+	<Section class="bg-gray6" size="lg">
+		<Fragment slot="title">NHS Patients</Fragment>
+
+		<Fragment slot="body">
+			<Text type="body" weight="normal">
+				At Seven Dental, we are currently accepting new NHS patients.
+			</Text>
+			<Text type="body" weight="normal">
+				The demand for NHS treatment is very high at the moment, and so
+				we recommend that patients contact the dental practice and speak
+				to the practice reception team for the up to date position on
+				waiting times for new NHS patients.
+			</Text>
+			<Text type="body" weight="normal">
+				These waiting times do vary according to our Clinical Capacity,
+				and so an NHS appointment may not be immediately available.
+			</Text>
+			<Text type="body" weight="normal">
+				If this happens to be the case, new patients then have the
+				option of either booking a Private appointment, and by this
+				approach being able to be seen more urgently, and then once the
+				urgent problem has been adressed Privately, they can then join
+				the NHS list for an appointment in due course.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section size="lg">
+		<Fragment slot="title">Private Patients</Fragment>
+
+		<Fragment slot="body">
+			<Text type="body" weight="normal">
+				At Seven Dental, we are currently accepting new Private patients
+				and a new Private patient appointment is usually available
+				within 24 hours. Occasionally, this period can be 48 hours,
+				however, equally, if the problem is urgent, a new Private
+				patient appointment can sometimes be made for the same day.
+			</Text>
+		</Fragment>
+	</Section>
+
+	<Section class="bg-gray6" size="lg">
+		<Fragment slot="title">Your First Visit</Fragment>
+
+		<Fragment slot="body">
+			<div class="flex flex-col gap-4">
+				<Text type="body" weight="normal">
+					For your first appointment, you will need:
+				</Text>
+				<ul class="flex list-disc flex-col gap-4 pl-4">
+					<li>A list of any current medications</li>
+					<li>Your doctor's details</li>
+					<li>To fill out your confidential medical history</li>
+				</ul>
+				<Text type="body" weight="normal">
+					It is not normally necessary for us to have access to your
+					previous dental records so please don't worry about them.
+				</Text>
+
+				<Text type="body" weight="normal">
+					At your first visit, we believe it is necessary to get to
+					know you, so we dedicate your first visit to determining
+					your dental needs through undertaking a dental care
+					assessment such as taking x-rays
+				</Text>
+			</div>
+		</Fragment>
+	</Section>
+</Page>

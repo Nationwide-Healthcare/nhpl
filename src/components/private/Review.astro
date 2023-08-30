@@ -1,0 +1,31 @@
+---
+import { reviews } from './review.ts';
+
+import Text from '../public/Text.astro';
+import Icon from '../public/Icon.astro';
+---
+
+<div
+	class="mx-auto grid grid-flow-row grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3"
+>
+	{
+		reviews.map((review) => (
+			<div class="flex h-full flex-col rounded-lg bg-white p-8">
+				<Text type="body" weight="normal">
+					{review.text}
+				</Text>
+
+				<div class="mt-auto flex w-full flex-row items-center justify-start pt-8 text-yellow">
+					<Text type="body" weight="bold" class="mr-auto text-black">
+						{review.name}
+					</Text>
+					<Icon type="star" />
+					<Icon type="star" />
+					<Icon type="star" />
+					<Icon type="star" />
+					<Icon type="star" />
+				</div>
+			</div>
+		))
+	}
+</div>

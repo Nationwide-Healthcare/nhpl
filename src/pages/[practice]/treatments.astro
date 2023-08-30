@@ -1,0 +1,135 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Page from '../../components/private/Page.astro';
+import Treatments from '../../components/private/Treatments.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Prices from '../../components/private/Prices.astro';
+import Text from '../../components/public/Text.astro';
+import Pagination from '../../components/public/Pagination.astro';
+import Section from '../../components/public/Section.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="main" />
+
+	<Hero>
+		<Fragment slot="title">
+			Treatments <div class="inline-block">& Prices</div>
+		</Fragment>
+	</Hero>
+
+	<Pagination class="bg-gray6">
+		<Section size="lg" slot="Treatments">
+			<Treatments slot="body" toggles={true} />
+		</Section>
+
+		<div class="flex-col items-center justify-center" slot="NHS Prices">
+			<div class="mx-auto w-screen max-w-screen-lg bg-gray6 px-4">
+				<Text type="title-lg">NHS Dental Charges</Text>
+				<Text type="body" weight="light">As of 24 April 2023</Text>
+				<br />
+				<Text type="body" weight="normal">
+					The charge you pay depends on the treatment you need to keep
+					your mouth, gums and teeth healthy. You will only ever be
+					asked to pay one charge for each complete course of
+					treatment, even if you need to visit your dentist more than
+					once to finish it – either Band 1, Band 2 or Band 3.
+				</Text>
+				<Text type="body" weight="normal">
+					If you are not exempt from charges, you should pay one of
+					the following charges for each course of treatment you
+					receive:
+				</Text>
+				<br />
+				<Text type="title-md">Band 1 | £25.80</Text>
+				<Text type="body" weight="normal">
+					This covers an examination, diagnosis (eg X-rays), advice on
+					how to prevent future problems, a scale and polish if
+					needed, and application of fluoride varnish or fissure
+					sealant. If you require urgent care, even if your urgent
+					treatment needs more than one appointment to complete, you
+					will only need to pay one Band 1 charge.
+				</Text>
+				<br />
+				<Text type="title-md">Band 2 | £70.70</Text>
+				<Text type="body" weight="normal">
+					This covers everything listed in Band 1 above, plus any
+					further treatment such as fillings, root canal work or if
+					your dentist needs to take out one or more of your teeth.
+				</Text>
+				<br />
+				<Text type="title-md">Band 3 | £306.80</Text>
+				<Text type="body" weight="normal">
+					This covers everything listed in Bands 1 and 2 above, plus
+					crowns, dentures and bridges.
+				</Text>
+				<br />
+				<Text type="title-sm">
+					Free NHS dental treatment or help with health costs
+				</Text>
+				<Text type="body" weight="normal">
+					You may be eligible for help with all or part of the costs
+					of your NHS dental treatment. To see if this applies to you,
+					see the leaflet NHS dental services in England, which is
+					available from any NHS dental practice or visit the NHS
+					website at www.nhs.uk/nhs-services/help-with-health-costs/
+					or call 0300 300 1343.
+				</Text>
+				<Text type="body" weight="normal">
+					For further information on NHS dental services and dental
+					charges, see the leaflet NHS dental services in England or
+					the dental services section of the NHS website (www.nhs.uk),
+					or ask your NHS England Local Team for help.
+				</Text>
+				<Text type="body" weight="normal">
+					For further information and advice for patients, please
+					visit NHSBSA Dental Services Online:
+					https://www.nhsbsa.nhs.uk/information-patients
+				</Text>
+			</div>
+		</div>
+
+		<Prices slot="Private Prices" />
+	</Pagination>
+
+	<div class="bg-gray6 md:py-16" id="treatments"></div>
+</Page>
+
+<script>
+	var treatmentsButton = document.getElementById('treatments-button');
+	var treatments = document.getElementById('treatments');
+
+	var NHSPricesButton = document.getElementById('nhs-prices-button');
+	var NHSPrices = document.getElementById('nhs-prices');
+
+	var privatePricesButton = document.getElementById('private-prices-button');
+	var privatePrices = document.getElementById('private-prices');
+
+	treatmentsButton.addEventListener('click', function () {
+		treatments.classList.remove('hidden');
+		NHSPrices.classList.add('hidden');
+		privatePrices.classList.add('hidden');
+	});
+
+	NHSPricesButton.addEventListener('click', function () {
+		treatments.classList.add('hidden');
+		NHSPrices.classList.remove('hidden');
+		privatePrices.classList.add('hidden');
+	});
+
+	privatePricesButton.addEventListener('click', function () {
+		treatments.classList.add('hidden');
+		NHSPrices.classList.add('hidden');
+		privatePrices.classList.remove('hidden');
+	});
+</script>

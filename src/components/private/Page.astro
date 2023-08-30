@@ -1,0 +1,57 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+
+import Footer from '../public/layout/Footer.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	keywords: string;
+}
+
+const properties = Astro.props;
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<html lang="en">
+	<head>
+		<title>{properties.title}</title>
+
+		<base href={`https://nhpl.co.uk/${practice?.href}/`} target="_self" />
+
+		<link rel="icon" type="image/ico" href="/images/logo/logo.ico" />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<meta charset="utf-8" />
+		<meta name="author" content="Nationwide Healthcare Providers Limited" />
+		<meta name="description" content={properties.description} />
+		<meta name="keywords" content={properties.keywords} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="index, follow, noarchive" />
+
+		<!--
+		<meta name="theme-color" content="" />
+		<meta name="color-scheme" content="" />
+		-->
+
+		<ViewTransitions fallback="swap" />
+	</head>
+
+	<body class="min-h-screen">
+		<slot />
+		<Footer />
+	</body>
+</html>
