@@ -40,7 +40,9 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 
 	<Hero>
 		<Fragment slot="title">
-			Welcome to <div class="inline-block text-blue">{practice.name}</div>
+			Welcome to <div class="inline-block text-blue">
+				{practice.name}
+			</div>
 		</Fragment>
 		<Fragment slot="body">
 			<Text type="title-xs" weight="light">
