@@ -1,7 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+
 import { awards } from './awards.ts'
+
+const images = await Promise.all(awards.map(async (award) =>
+    await import(`../../assets/awards/award-tda-${award.image}.webp`)
+));
 ---
 
 <div class="mx-auto flex flex-row items-center justify-start gap-8 overflow-x-auto px-8 py-16">
-	{awards.map((award) => <img class="w-[100px]" src={'./images/awards/' + award.image} />)}
+	{awards.map((_, index) => <Image height="100" width="100" src={images[index].default} alt="Award" />)}
 </div>

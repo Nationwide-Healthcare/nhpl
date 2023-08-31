@@ -4,27 +4,27 @@ export const headers = [
 		links: [
 			{
 				name: 'Home',
-				href: '',
+				href: '/',
 			},
 			{
 				name: 'New Patients',
-				href: 'new-patients',
+				href: '/new-patients/',
 			},
 			{
 				name: 'Treatments',
-				href: 'treatments',
+				href: '/treatments/',
 			},
 			{
 				name: 'Emergency',
-				href: 'treatments/emergency',
+				href: '/treatments/emergency/',
 			},
 			{
 				name: 'Fees & Finance',
-				href: 'fees',
+				href: '/fees/',
 			},
 			{
 				name: 'About Us',
-				href: 'about-us',
+				href: '/about-us/',
 			},
 		],
 	},

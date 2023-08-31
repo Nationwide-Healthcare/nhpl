@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 import Text from '../public/Text.astro';
 import Link from '../public/Link.astro';
 import Button from '../public/Button.astro';
@@ -15,6 +17,7 @@ function idGenerator() {
 }
 
 import { treatments } from './treatments.ts';
+
 import Icon from '../public/Icon.astro';
 
 type Filter = {
@@ -29,10 +32,21 @@ interface Props {
 }
 
 const properties = Astro.props;
+
+const images = await Promise.all(
+	treatments.map(async (treatment) => {
+		const image = await import(
+			`../../assets/treatments/treatment-${treatment.image.src}.webp`
+		);
+		return image.default;
+	}),
+);
+
+console.log(images);
 ---
 
 <div
-	class="mx-auto grid w-full grid-cols-1 items-center justify-center gap-4 rounded-md py-8 md:grid-cols-2 md:gap-2 lg:grid-cols-4"
+	class="mx-auto grid w-full grid-cols-1 items-center justify-center gap-4 rounded-md py-8 md:grid-cols-2 md:gap-2 lg:grid-cols-3"
 >
 	{
 		treatments?.map((treatment, index) => (
@@ -47,12 +61,10 @@ const properties = Astro.props;
 						: null
 				}`}
 			>
-				<img
-					src={'/images/treatments/' + treatment.image.src}
+				<Image
+					src={images[index]}
 					alt={treatment.image.alt}
-					class="w-full object-cover brightness-75 md:rounded-t-md"
 					transition:name={treatment.href}
-					transition:animate="morph"
 				/>
 
 				<div class="flex h-full flex-col gap-4 p-8">
@@ -91,7 +103,7 @@ const properties = Astro.props;
 
 			var button = document.querySelector('button#treatment');
 			var treatments_containers = document.querySelectorAll(
-				'a[id ^="treatment-"]'
+				'a[id ^="treatment-"]',
 			);
 			button?.addEventListener('click', function () {
 				treatments_containers.forEach(function (treatments_container) {
@@ -100,6 +112,6 @@ const properties = Astro.props;
 
 				button_container?.classList.add('hidden');
 			});
-		})
+		}),
 	);
 </script>

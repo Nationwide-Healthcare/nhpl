@@ -2,7 +2,6 @@
 import Header from '../../components/public/layout/Header.astro';
 import Button from '../../components/public/Button.astro';
 import Hero from '../../components/public/layout/Hero.astro';
-import Testimonials from '../../components/private/Testimonials.astro';
 import Treatments from '../../components/private/Treatments.astro';
 import Page from '../../components/private/Page.astro';
 import Section from '../../components/public/Section.astro';
@@ -41,7 +40,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 	<Hero>
 		<Fragment slot="title">
 			Welcome to <div class="inline-block text-blue">
-				{practice.name}
+				{practice?.name}
 			</div>
 		</Fragment>
 		<Fragment slot="body">
@@ -96,7 +95,10 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 	<Section class="bg-blue text-white" size="lg">
 		<Fragment slot="title">Emergencies</Fragment>
 		<Fragment slot="caption">
-			Whether or not you are a registered patient, we are here to help.
+			<Text>
+				Whether or not you are a registered patient, we are here to
+				help.
+			</Text>
 		</Fragment>
 
 		<Fragment slot="body">
@@ -133,7 +135,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 			<Treatments
 				toggles={true}
 				filter={{
-					limit: 4,
+					limit: 6,
 				}}
 			/>
 		</Fragment>
@@ -164,6 +166,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		</Fragment>
 	</Section>
 
+	<!--
 	<Section class="mb-0 bg-gray6 pb-0" size="lg">
 		<Fragment slot="title">Testimonials</Fragment>
 		<Fragment slot="caption">
@@ -178,4 +181,5 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 
 		<Testimonials slot="body" />
 	</Section>
+	-->
 </Page>

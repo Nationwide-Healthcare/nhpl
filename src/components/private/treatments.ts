@@ -3,7 +3,7 @@ export const treatments = [
 		name: 'Check Ups',
 		description: 'Regular examination to ensure your teeth and gums are as healthy as possible',
 		image: {
-			src: 'check-up.webp',
+			src: 'check-up',
 			alt: 'Dental check-up depiction in a bright, high-contrast setting.'
 		},
 		costs: [
@@ -24,7 +24,7 @@ export const treatments = [
 		description:
 			'Prevent toothache, bad breath, infection, and even the loss of teeth which can result from a cavity or damaged tooth',
 		image: {
-			src: 'filling.webp',
+			src: 'filling',
 			alt: 'Dental filling in a dark, low-contrast setting.'
 		},
 		costs: [
@@ -44,7 +44,7 @@ export const treatments = [
 		name: 'Extractions',
 		description: 'A procedure to remove teeth that are severely damaged, impacted, or decayed.',
 		image: {
-			src: 'extraction.webp',
+			src: 'extraction',
 			alt: 'Tooth extraction procedure in a bright, low-contrast setting.'
 		},
 		costs: [
@@ -65,7 +65,7 @@ export const treatments = [
 		description:
 			'Urgent dental care for unexpected issues like severe pain, swelling, or trauma to the mouth.',
 		image: {
-			src: 'emergency.webp',
+			src: 'emergency',
 			alt: 'Emergency dental care in a bright, low-contrast setting.'
 		},
 		costs: [
@@ -86,8 +86,8 @@ export const treatments = [
 		description:
 			'A cosmetic treatment designed to enhance the brightness of teeth, removing stains and discoloration.',
 		image: {
-			src: 'teeth-whitening.webp',
-			alt: ''
+			src: 'teeth-whitening',
+			alt: 'An example of teeth whitening in a bright, low-contrast setting.'
 		},
 		costs: [
 			{
@@ -103,7 +103,7 @@ export const treatments = [
 		description:
 			"A modern approach to straightening teeth using custom-made aligners crafted for an individual's teeth.",
 		image: {
-			src: 'invisalign.webp',
+			src: 'invisalign',
 			alt: 'Invisalign aligners in a dark, low-contrast setting.'
 		},
 		costs: [
@@ -120,7 +120,7 @@ export const treatments = [
 		description:
 			'Artificial tooth roots that provide a strong foundation for fixed or removable replacement teeth.',
 		image: {
-			src: 'implant.webp',
+			src: 'implant',
 			alt: 'Dental implant in a bright, low-contrast setting.'
 		},
 		costs: [
@@ -137,7 +137,7 @@ export const treatments = [
 		description:
 			'Tooth-shaped caps placed over a tooth to restore its shape, size, strength, and appearance.',
 		image: {
-			src: 'crown.webp',
+			src: 'crown',
 			alt: 'Dental crown in a dark, high-contrast setting.'
 		},
 		costs: [
@@ -157,7 +157,7 @@ export const treatments = [
 		name: 'Dentures',
 		description: 'Removable replacements for missing teeth and surrounding tissues.',
 		image: {
-			src: 'dentures.webp',
+			src: 'dentures',
 			alt: 'Dentures in a dark, low-contrast setting.'
 		},
 		costs: [
@@ -178,7 +178,7 @@ export const treatments = [
 		description:
 			'Dental restorations used to fill the gap created by one or more missing teeth.',
 		image: {
-			src: 'bridges.webp',
+			src: 'bridges',
 			alt: 'Dental bridges in a dark, high-contrast setting.'
 		},
 		costs: [
@@ -199,8 +199,8 @@ export const treatments = [
 		description:
 			'Treatments focusing on the care and maintenance of the supporting structures of the teeth, including gums and bone.',
 		image: {
-			src: 'periodontal.webp',
-			alt: ''
+			src: 'periodontal',
+			alt: 'Periodontal treatment in a dark, low-contrast setting.'
 		},
 		costs: [
 			{
