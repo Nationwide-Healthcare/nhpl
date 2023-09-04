@@ -17,7 +17,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 ---
 
 <Page title="" description="" keywords="">
-	<Header name="main" />
+	<Header name="practice" base={`/${practice?.href}`} />
 
 	<Hero>
 		<Fragment slot="title">Privacy Policy</Fragment>

@@ -41,8 +41,6 @@ const images = await Promise.all(
 		return image.default;
 	}),
 );
-
-console.log(images);
 ---
 
 <div
@@ -65,11 +63,13 @@ console.log(images);
 					src={images[index]}
 					alt={treatment.image.alt}
 					transition:name={treatment.href}
+					transition:persist={`${treatment?.href}`}
 				/>
 
 				<div class="flex h-full flex-col gap-4 p-8">
 					<Text
 						type="title-sm"
+						style="sans"
 						class="flex flex-row items-center gap-2"
 					>
 						{treatment.name} <Icon type="chevron-right" />

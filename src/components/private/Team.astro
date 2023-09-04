@@ -1,18 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 
-import Text from '../public/Text.astro'
-import Button from '../public/Button.astro'
-import Link from '../public/Link.astro'
+import Text from '../public/Text.astro';
+import Button from '../public/Button.astro';
+import Link from '../public/Link.astro';
 
-import { team } from './team.ts'
+import { team } from './team.ts';
 
 interface Props {
-	filter?: string[]
-	limit?: number
+	filter?: string[];
+	limit?: number;
 }
 
-const properties = Astro.props
+const properties = Astro.props;
 
 /*
 properties.filter
@@ -22,13 +22,13 @@ properties.filter
 	: null
 */
 
-const images = await Promise.all(team.map(async (member) =>
-    await import(`../../assets/user.png`)
-));
+const images = await Promise.all(
+	team.map(async (member) => await import(`../../assets/user.png`)),
+);
 ---
 
 <div
-	class="grid w-full grid-cols-4 items-center justify-center py-8 sm:gap-4"
+	class="grid w-full grid-cols-2 md:grid-cols-4 items-center justify-center py-8 gap-2 sm:gap-4"
 	transition:name="team"
 >
 	{
@@ -38,13 +38,18 @@ const images = await Promise.all(team.map(async (member) =>
 				class={
 					'flex flex-col items-center justify-center gap-4 bg-gray6 pb-4 sm:rounded-lg ' +
 					(properties.limit
-						? properties.limit != undefined && index >= properties.limit
+						? properties.limit != undefined &&
+						  index >= properties.limit
 							? 'hidden'
 							: null
 						: null)
 				}
 			>
-				<Image class="rounded-t-lg object-cover" src={images[index].default} alt={"Team Member"} />
+				<Image
+					class="rounded-t-lg object-cover"
+					src={images[index].default}
+					alt={'Team Member'}
+				/>
 
 				<Text type={'body'} weight={'bold'}>
 					{member.name}
@@ -59,7 +64,10 @@ const images = await Promise.all(team.map(async (member) =>
 
 {
 	properties.limit ? (
-		<div id="team" class="mx-auto flex w-full flex-row items-center justify-center">
+		<div
+			id="team"
+			class="mx-auto flex w-full flex-row items-center justify-center"
+		>
 			<Link href="/about-us#team">
 				<Button style="primary">Meet the full team</Button>
 			</Link>

@@ -6,6 +6,7 @@ import Section from '../../../components/public/Section.astro';
 import Link from '../../../components/public/Link.astro';
 import Button from '../../../components/public/Button.astro';
 import Prices from '../../../components/private/Prices.astro';
+import TreatmentsTitle from '../../../components/private/TreatmentsTitle.astro';
 
 import { practices } from '../../../components/private/practices.ts';
 
@@ -15,6 +16,8 @@ export async function getStaticPaths() {
 	});
 }
 
+const practice = practices.find((p) => p.href === Astro.params.practice);
+
 import { treatments } from '../../../components/private/treatments.ts';
 
 const treatment = treatments.find((treatment) => {
@@ -23,23 +26,9 @@ const treatment = treatments.find((treatment) => {
 ---
 
 <Page title="Emergency" description="" keywords="">
-	<Header name="main" />
+	<Header name="practice" base={`/${practice?.href}`} />
 
-	<div
-		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
-	>
-		<img
-			src={`/images/treatments/${treatment?.image.src}`}
-			alt={treatment.image.alt}
-			class="w-full object-cover brightness-50"
-			transition:name={`${treatment?.href}`}
-		/>
-		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
-			{treatment?.name}
-		</Text>
-	</div>
-
-	<Prices filter={[`${treatment?.name}`]} />
+	<TreatmentsTitle treatment={treatment.name} />
 
 	<Section class="bg-gray6" size="lg">
 		<Fragment slot="title">Who do we see</Fragment>

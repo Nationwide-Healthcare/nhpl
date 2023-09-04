@@ -7,6 +7,8 @@ import Prices from '../../../components/private/Prices.astro';
 
 import { practices } from '../../../components/private/practices.ts';
 
+const practice = practices.find((p) => p.href === Astro.params.practice);
+
 export async function getStaticPaths() {
 	return practices.map((practice) => {
 		return { params: { practice: practice.href } };
@@ -14,6 +16,7 @@ export async function getStaticPaths() {
 }
 
 import { treatments } from '../../../components/private/treatments.ts';
+import TreatmentsTitle from '../../../components/private/TreatmentsTitle.astro';
 
 const treatment = treatments.find((treatment) => {
 	return treatment.name === 'Extractions';
@@ -25,23 +28,9 @@ const treatment = treatments.find((treatment) => {
 	description="Learn more about Tooth Removal"
 	keywords="removal, extraction, tooth removal, remove, take out"
 >
-	<Header name="main" />
+	<Header name="practice" base={`/${practice?.href}`} />
 
-	<div
-		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
-	>
-		<img
-			src={`/images/treatments/${treatment?.image.src}`}
-			alt={treatment.image.alt}
-			class="w-full object-cover brightness-50"
-			transition:name={`${treatment?.href}`}
-		/>
-		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
-			{treatment?.name}
-		</Text>
-	</div>
-
-	<Prices filter={[`${treatment?.name}`]} />
+	<TreatmentsTitle treatment={treatment.name} />
 
 	<Section size="lg" class="bg-gray6">
 		<Fragment slot="title">What is Tooth Removal?</Fragment>

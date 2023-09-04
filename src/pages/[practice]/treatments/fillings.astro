@@ -13,7 +13,10 @@ export async function getStaticPaths() {
 	});
 }
 
+const practice = practices.find((p) => p.href === Astro.params.practice);
+
 import { treatments } from '../../../components/private/treatments.ts';
+import TreatmentsTitle from '../../../components/private/TreatmentsTitle.astro';
 
 const treatment = treatments.find((treatment) => {
 	return treatment.name === 'Fillings';
@@ -21,23 +24,9 @@ const treatment = treatments.find((treatment) => {
 ---
 
 <Page title="Fillings" description="" keywords="">
-	<Header name="main" />
+	<Header name="practice" base={`/${practice?.href}`} />
 
-	<div
-		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
-	>
-		<img
-			src={`/images/treatments/${treatment?.image.src}`}
-			alt={treatment.image.alt}
-			class="w-full object-cover brightness-50"
-			transition:name={`${treatment?.href}`}
-		/>
-		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
-			{treatment?.name}
-		</Text>
-	</div>
-
-	<Prices filter={[`${treatment?.name}`]} />
+	<TreatmentsTitle treatment={treatment.name} />
 
 	<Section size="lg" class="bg-gray6">
 		<Fragment slot="title">What are Fillings?</Fragment>

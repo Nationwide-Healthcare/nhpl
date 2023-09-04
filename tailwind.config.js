@@ -9,6 +9,7 @@ module.exports = {
 		extend: {},
 		fontFamily: {
 			sans: ['Roboto'],
+			serif: ['Roboto Slab'],
 		},
 		colors: {
 			black: '#000000',
@@ -39,6 +40,7 @@ module.exports = {
 					lineHeight: '64px',
 					letterSpacing: '-0.025em',
 					fontWeight: '900',
+					fontFamily: 'Roboto',
 				},
 			],
 
@@ -48,15 +50,17 @@ module.exports = {
 					lineHeight: '52px',
 					letterSpacing: '0em',
 					fontWeight: '700',
+					fontFamily: 'Roboto',
 				},
 			],
 
 			'title-md': [
 				'32px',
 				{
-					lineHeight: '40px',
+					lineHeight: '42px',
 					letterSpacing: '0em',
 					fontWeight: '700',
+					fontFamily: 'Roboto',
 				},
 			],
 
@@ -66,15 +70,17 @@ module.exports = {
 					lineHeight: '36px',
 					letterSpacing: '0em',
 					fontWeight: '700',
+					fontFamily: 'Roboto',
 				},
 			],
 
 			body: [
 				'18px',
 				{
-					lineHeight: '24px',
+					lineHeight: '26px',
 					letterSpacing: '0em',
 					fontWeight: '400',
+					fontFamily: 'Roboto Slab',
 				},
 			],
 
@@ -83,7 +89,8 @@ module.exports = {
 				{
 					lineHeight: '18px',
 					letterSpacing: '0em',
-					fontWeight: '400r',
+					fontWeight: '400',
+					fontFamily: 'Roboto Slab',
 				},
 			],
 		},

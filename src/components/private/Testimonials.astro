@@ -1,16 +1,25 @@
 ---
+import { Image } from 'astro:assets';
 
+const image = (await import(`../../assets/reviews/review.jpg`)).default;
 ---
 
 <div class="mx-auto w-full flex-col items-center justify-center pt-16">
 	<div
-		class="mx-auto flex h-[600px] w-full flex-col items-center justify-center gap-8 bg-[url('../images/review.jpg')] bg-cover bg-center py-16 text-center text-white"
+		class="mx-auto h-[600px] w-full inline-block gap-8 text-center text-white relative"
 	>
-		<p class="px-4 text-title-sm font-bold leading-[40px]">
-			“I was really nervous but they were so efficient and kind that there
-			wasn't anything to be worried about. It was quick, painless and they
-			explained everything really well. Brilliant!”
-		</p>
-		<img class="h-[24px]" src="./images/stars.png" />
+		<Image src={image} alt="review" class="h-full object-cover" />
+
+		<div class="inline-block">
+			<p
+				class="px-4 text-title-sm font-bold leading-[40px] w-full z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+			>
+				“I was really nervous but they were so efficient and kind that
+				there wasn't anything to be worried about. It was quick,
+				painless and they explained everything really well. Brilliant!”
+			</p>
+		</div>
+
+		<!--<img class="h-[24px]" src="./images/stars.png" />-->
 	</div>
 </div>

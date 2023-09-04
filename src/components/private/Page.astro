@@ -30,10 +30,8 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 
 		<link rel="icon" type="image/ico" href="/images/logo/logo.ico" />
 
-		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-			rel="stylesheet"
-		/>
+		<link rel="stylesheet" href="/fonts/Roboto/import.css" />
+		<link rel="stylesheet" href="/fonts/Roboto_Slab/import.css" />
 
 		<meta charset="utf-8" />
 		<meta name="author" content="Nationwide Healthcare Providers Limited" />
@@ -52,6 +50,6 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 
 	<body class="min-h-screen">
 		<slot />
-		<Footer />
+		<Footer base="/seven-dental" />
 	</body>
 </html>

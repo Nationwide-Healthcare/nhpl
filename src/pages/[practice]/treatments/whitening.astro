@@ -7,6 +7,8 @@ import Prices from '../../../components/private/Prices.astro';
 
 import { practices } from '../../../components/private/practices.ts';
 
+const practice = practices.find((p) => p.href === Astro.params.practice);
+
 export async function getStaticPaths() {
 	return practices.map((practice) => {
 		return { params: { practice: practice.href } };
@@ -14,6 +16,7 @@ export async function getStaticPaths() {
 }
 
 import { treatments } from '../../../components/private/treatments.ts';
+import TreatmentsTitle from '../../../components/private/TreatmentsTitle.astro';
 
 const treatment = treatments.find((treatment) => {
 	return treatment.name === 'Whitening';
@@ -25,81 +28,67 @@ const treatment = treatments.find((treatment) => {
 	description="Learn more about Tooth Removal"
 	keywords="removal, extraction, tooth removal, remove, take out"
 >
-	<Header name="main" />
+	<Header name="practice" base={`/${practice?.href}`} />
 
-	<div
-		class="mx-auto flex max-w-screen-md flex-col items-center justify-center"
-	>
-		<img
-			src={`/images/treatments/${treatment?.image.src}`}
-			alt={treatment.image.alt}
-			class="w-full object-cover brightness-50"
-			transition:name={`${treatment?.href}`}
-		/>
-		<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
-			{treatment?.name}
-		</Text>
-	</div>
+	<TreatmentsTitle treatment={treatment.name}>
+		<Section size="lg" class="bg-gray6">
+			<Fragment slot="title">What is Teeth Whitening?</Fragment>
+			<Fragment slot="body">
+				<Text>
+					Teeth Whitening consists of bleaching your teeth to lighten
+					them by several shades.
+				</Text>
+				<Text>
+					While teeth whitening can help a lot, the best way to
+					preserve your smile is to look after your teeth and gums.
+				</Text>
+				<Text>
+					Please note Teeth Whitening doesn't affect false teeth such
+					as dentures, crowns, fillings and veneers.
+				</Text>
+			</Fragment>
+		</Section>
 
-	<Prices filter={[`${treatment?.name}`]} />
+		<Section size="lg">
+			<Fragment slot="title">Types of Teeth Whitening</Fragment>
+			<Fragment slot="body">
+				<Text>
+					There are two ways to receive Teeth Whitening treatment:
+				</Text>
 
-	<Section size="lg" class="bg-gray6">
-		<Fragment slot="title">What is Teeth Whitening?</Fragment>
-		<Fragment slot="body">
-			<Text>
-				Teeth Whitening consists of bleaching your teeth to lighten them
-				by several shades.
-			</Text>
-			<Text>
-				While teeth whitening can help a lot, the best way to preserve
-				your smile is to look after your teeth and gums.
-			</Text>
-			<Text>
-				Please note Teeth Whitening doesn't affect false teeth such as
-				dentures, crowns, fillings and veneers.
-			</Text>
-		</Fragment>
-	</Section>
+				<Text>
+					<ul class="flex list-disc flex-col gap-4 pl-4">
+						<li>
+							Clinical Whitening - also known as Laser Whitening -
+							involves using lasers to amplify bleaching product
+							to quickly and effectively whiten your teeth. This
+							tends to take about an hour.
+						</li>
+						<li>
+							Home Whitening involves using mouthgaurds and
+							bleaching gel to effectively whiten your teeth. This
+							process may require regularly wearing the whitening
+							kit for multiple weeks.
+						</li>
+					</ul>
+				</Text>
+			</Fragment>
+		</Section>
 
-	<Section size="lg">
-		<Fragment slot="title">Types of Teeth Whitening</Fragment>
-		<Fragment slot="body">
-			<Text>
-				There are two ways to receive Teeth Whitening treatment:
-			</Text>
+		<Section size="lg" class="bg-gray6">
+			<Fragment slot="title">Is Teeth Whitening permenant?</Fragment>
+			<Fragment slot="body">
+				<Text>
+					Teeth Whitening effects may last anywhere from a few months
+					to a several years depending on how well you care for your
+					teeth outside of the Dentist.
+				</Text>
 
-			<Text>
-				<ul class="flex list-disc flex-col gap-4 pl-4">
-					<li>
-						Clinical Whitening - also known as Laser Whitening -
-						involves using lasers to amplify bleaching product to
-						quickly and effectively whiten your teeth. This tends to
-						take about an hour.
-					</li>
-					<li>
-						Home Whitening involves using mouthgaurds and bleaching
-						gel to effectively whiten your teeth. This process may
-						require regularly wearing the whitening kit for multiple
-						weeks.
-					</li>
-				</ul>
-			</Text>
-		</Fragment>
-	</Section>
-
-	<Section size="lg" class="bg-gray6">
-		<Fragment slot="title">Is Teeth Whitening permenant?</Fragment>
-		<Fragment slot="body">
-			<Text>
-				Teeth Whitening effects may last anywhere from a few months to a
-				several years depending on how well you care for your teeth
-				outside of the Dentist.
-			</Text>
-
-			<Text>
-				Activites such as smoking which stain your teeth will reduce the
-				longevity of your Teeth Whitening treatment
-			</Text>
-		</Fragment>
-	</Section>
+				<Text>
+					Activites such as smoking which stain your teeth will reduce
+					the longevity of your Teeth Whitening treatment
+				</Text>
+			</Fragment>
+		</Section>
+	</TreatmentsTitle>
 </Page>

@@ -13,7 +13,7 @@ export default defineConfig({
 	redirects: {},
 	compressHTML: true,
 	base: '/',
-	trailingSlash: 'always',
+	trailingSlash: 'ignore',
 	scopedStyleStrategy: 'attribute',
 	output: 'static',
 	build: {

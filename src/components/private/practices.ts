@@ -1,25 +1,25 @@
 export const practices = [
 	{
 		name: 'Abbeydale Road Family Dental Centre',
-		location: 'Sheffield',
+		location: '4-6 Abbeydale Rd, Highfield, Sheffield S7 1FD',
 		image: 'abbeydale-road.jpg',
 		href: 'abbeydale-road-family-dental-centre',
 	},
 	{
 		name: 'Seven Dental',
-		location: 'Nottingham',
-		image: 'seven-dental.jpg',
+		location: '69-75 Radford Road, Hyson Green, Nottingham NG7 5DR',
+		image: 'seven-dental.png',
 		href: 'seven-dental',
 	},
 	{
 		name: 'Anstey Family Dental Centre',
-		location: 'Leicester',
+		location: '9 Bradgate Rd, Anstey, Leicester LE7 7AB',
 		image: 'anstey.jpg',
 		href: 'anstey-family-dental-centre',
 	},
 	{
 		name: 'Market Place Dental Care',
-		location: 'Mansfield',
+		location: 'Nottinghamshire',
 		image: 'marketplace.png',
 		href: 'market-place-dental-care',
 	},
@@ -37,8 +37,8 @@ export const practices = [
 	},
 	{
 		name: 'South Elmsall Family Dental Centre',
-		location: 'Pontefract',
-		image: 'south-elmsall.jpg',
+		location: 'Wakefield',
+		image: 'south-elmsall.png',
 		href: 'south-elmsall-family-dental-centre',
 	},
 	{
@@ -55,13 +55,13 @@ export const practices = [
 	},
 	{
 		name: 'Portland Road Dental',
-		location: 'Nottingham',
+		location: 'Hucknall',
 		image: 'portland.png',
 		href: 'portland-road-dental',
 	},
 	{
 		name: 'Sileby Dental',
-		location: 'Loughborough',
+		location: 'Leicester',
 		image: 'sileby.png',
 		href: 'sileby-dental',
 	},
@@ -73,8 +73,8 @@ export const practices = [
 	},
 	{
 		name: 'Somercotes Dental',
-		location: 'Alfreton',
-		image: 'somercotes.png',
+		location: 'Derbyshire',
+		image: 'somercotes.jpg',
 		href: 'somercotes-dental',
 	},
 	{
@@ -85,8 +85,14 @@ export const practices = [
 	},
 	{
 		name: 'Normanton Road Dental',
-		location: 'Sheffield',
+		location: 'Derby',
 		image: 'normanton.png',
 		href: 'normanton-road-dental',
+	},
+	{
+		name: 'Manor Park Family Dental Centre',
+		location: 'Sheffield',
+		image: 'manor-park.jpg',
+		href: 'manor-park',
 	},
 ] as const;

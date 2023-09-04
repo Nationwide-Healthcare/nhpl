@@ -1,0 +1,40 @@
+---
+import Text from '../public/Text.astro';
+
+import { Image } from 'astro:assets';
+
+import { treatments } from '../private/treatments';
+import Prices from '../private/Prices.astro';
+
+interface Props {
+	treatment: (typeof treatments)[number]['name'];
+}
+
+const properties = Astro.props;
+
+const treatment = treatments.find(
+	(treatment) => treatment.name == properties.treatment,
+);
+
+const image = (
+	await import(
+		`../../assets/treatments/treatment-${treatment?.image.src}.webp`
+	)
+).default;
+---
+
+<div class="mx-auto flex max-w-screen-md flex-col items-center justify-center">
+	<Image
+		src={image}
+		alt={treatment?.image.alt}
+		class="w-full object-cover"
+		transition:name={`${treatment?.href}`}
+		transition:persist={`${treatment?.href}`}
+	/>
+
+	<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">
+		{treatment?.name}
+	</Text>
+</div>
+
+<Prices filter={[treatment.name]} />

@@ -7,6 +7,23 @@ export const headers = [
 				href: '/',
 			},
 			{
+				name: 'EEA',
+				href: '/eea/',
+			},
+			{
+				name: 'PLVE',
+				href: '/plve/',
+			},
+		],
+	},
+	{
+		name: 'practice',
+		links: [
+			{
+				name: 'Home',
+				href: '/',
+			},
+			{
 				name: 'New Patients',
 				href: '/new-patients/',
 			},

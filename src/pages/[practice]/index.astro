@@ -9,6 +9,8 @@ import Link from '../../components/public/Link.astro';
 import Awards from '../../components/private/Awards.astro';
 import Team from '../../components/private/Team.astro';
 import Text from '../../components/public/Text.astro';
+import Icon from '../../components/public/Icon.astro';
+import Testimonials from '../../components/private/Testimonials.astro';
 
 import { practices } from '../../components/private/practices.ts';
 
@@ -22,7 +24,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 ---
 
 <Page title="" description="" keywords="">
-	<Header name="main" />
+	<Header name="practice" base={`/${practice?.href}`} />
 
 	<div class="w-full bg-blue">
 		<div class="mx-auto max-w-screen-lg px-2 py-4">
@@ -37,27 +39,34 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		</div>
 	</div>
 
-	<Hero>
-		<Fragment slot="title">
-			Welcome to <div class="inline-block text-blue">
-				{practice?.name}
-			</div>
-		</Fragment>
-		<Fragment slot="body">
-			<Text type="title-xs" weight="light">
-				Setting the Gold Standard in Dental Care
+	<div class="w-full block relative h-[600px] mx-auto">
+		<img
+			class="w-full h-full object-cover block"
+			transition:name={practice.href}
+			transition:persist={practice.href}
+			src={`/images/practices/${practice?.image}`}
+		/>
+
+		<div
+			class="absolute inline-block text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 px-16 py-8 bg-white/50 backdrop-blur-lg rounded-lg"
+		>
+			<Text type="title-xl" weight="black">
+				Welcome to <div class="inline-block text-blue">
+					{practice?.name}
+				</div>
 			</Text>
-		</Fragment>
 
-		<Fragment slot="buttons">
-			<Link class="text-body text-blue" href="/contact">
-				<Button style="primary" size="large">Book now</Button>
-			</Link>
-			<Link href="/about-us">Learn more</Link>
-		</Fragment>
-	</Hero>
+			<Text>Setting the Gold Standard in Dental Care.</Text>
 
-	<Section size="lg" class="bg-gray6">
+			<Button style="primary" size="medium" class="mt-4">
+				<Link class="flex flex-row gap-2" href="tel:01159700007">
+					<Icon type="phone" />0115 970 0007
+				</Link>
+			</Button>
+		</div>
+	</div>
+
+	<Section size="lg">
 		<Fragment slot="title">
 			Well established, with long serving staff
 		</Fragment>
@@ -92,14 +101,29 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		</Fragment>
 	</Section>
 
-	<Section class="bg-blue text-white" size="lg">
-		<Fragment slot="title">Emergencies</Fragment>
-		<Fragment slot="caption">
+	<Section size="lg" class="bg-gray6">
+		<Fragment slot="title">Dental Care for Everyone</Fragment>
+		<Fragment slot="body">
 			<Text>
-				Whether or not you are a registered patient, we are here to
-				help.
+				At Seven Dental, we believe everyone deserves a radiant smile
+				and top-tier dental care. We proudly open our doors to all
+				individuals, regardless of whether you're an existing patient or
+				looking to visit us for the first time. We offer a wide variety
+				both NHS and Private Treatments available to patients of any
+				age. Our commitment is unwavering: to provide exceptional dental
+				services to every patient, no matter their age or background.
+				Entrust us with your dental health, and experience the warmth
+				and professionalism that defines our practice. Our telephone
+				number is
+				<Link class="text-black underline" href={'tel:01159700007'}>
+					0115 970 0007
+				</Link>
 			</Text>
 		</Fragment>
+	</Section>
+
+	<Section class="bg-blue text-white" size="lg">
+		<Fragment slot="title">Emergencies</Fragment>
 
 		<Fragment slot="body">
 			<Text type="body" weight="normal">
@@ -128,7 +152,9 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		<Fragment slot="title">Our Treatments</Fragment>
 
 		<Fragment slot="caption">
-			View all the treatments we offer here at Seven Dental
+			Whether you're looking for General Dental Treatment or Cosmetic
+			Care, we at Seven Dental offer a wide variety of treatment options
+			available to everyone.
 		</Fragment>
 
 		<Fragment slot="body">
@@ -141,17 +167,18 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		</Fragment>
 	</Section>
 
-	<Section size="lg">
-		<Fragment slot="title">Our Team</Fragment>
+	<!--<Section size="lg">
+		<Fragment slot="title">Our Expert Team</Fragment>
 		<Fragment slot="caption">
 			Meet the amazing team dedicated to providing only the best treatment
-			for you
+			for you.
 		</Fragment>
 
 		<Team slot="body" limit={4} />
 	</Section>
+	 -->
 
-	<Section size="lg">
+	<Section size="lg" class="bg-gray6">
 		<Fragment slot="title">Multi-Award Winning Dentistry</Fragment>
 		<Fragment slot="caption">
 			Seven Dental is a modern, diverse and multi-cultural dental practice
@@ -166,20 +193,20 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		</Fragment>
 	</Section>
 
-	<!--
-	<Section class="mb-0 bg-gray6 pb-0" size="lg">
-		<Fragment slot="title">Testimonials</Fragment>
-		<Fragment slot="caption">
-			Don't just take it from us. See what our patients say.
-		</Fragment>
+	<div class="w-screen max-w-full">
+		<Section class="mb-0 pb-0" size="lg">
+			<Fragment slot="title">Testimonials</Fragment>
+			<Fragment slot="caption">
+				Don't just take it from us. See what our patients say.
+			</Fragment>
 
-		<Fragment slot="buttons">
-			<Button style="secondary">
-				<Link href={null}>See more on Google</Link>
-			</Button>
-		</Fragment>
+			<Fragment slot="buttons">
+				<Button style="secondary">
+					<Link href={null}>See more on Google</Link>
+				</Button>
+			</Fragment>
+		</Section>
 
-		<Testimonials slot="body" />
-	</Section>
-	-->
+		<Testimonials />
+	</div>
 </Page>

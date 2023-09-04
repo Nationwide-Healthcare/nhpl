@@ -1,0 +1,96 @@
+---
+import Header from '../../components/public/layout/Header.astro';
+import Button from '../../components/public/Button.astro';
+import Hero from '../../components/public/layout/Hero.astro';
+import Treatments from '../../components/private/Treatments.astro';
+import Page from '../../components/private/Page.astro';
+import Section from '../../components/public/Section.astro';
+import Link from '../../components/public/Link.astro';
+import Awards from '../../components/private/Awards.astro';
+import Team from '../../components/private/Team.astro';
+import Text from '../../components/public/Text.astro';
+import Icon from '../../components/public/Icon.astro';
+import Testimonials from '../../components/private/Testimonials.astro';
+
+import { practices } from '../../components/private/practices.ts';
+
+export async function getStaticPaths() {
+	return practices.map((practice) => {
+		return { params: { practice: practice.href } };
+	});
+}
+
+const practice = practices.find((p) => p.href === Astro.params.practice);
+---
+
+<Page title="" description="" keywords="">
+	<Header name="practice" base={`/${practice?.href}`} />
+
+	<Section size="lg" class="bg-white">
+		<Fragment slot="body">
+			<div class="text-left">
+				<Text type="title-sm" weight="bold">
+					✅ New Private Patients
+				</Text>
+				 If you are a new patient, and wish to be seen privately,
+				several dental surgeons are able to offer appointments sooner,
+				and these may even be available at short notice and even on the
+				same day. This availability cannot be gauranteed, however, it is
+				a possibility that this can be arranged swiftly. The fee for
+				being seen by a dental surgeon on a private basis in an
+				emergency is normally £50, this is payable at the time of
+				booking the appointment, and this fee includes the cost of
+				seeing the dentist and all necessary X-rays and does not include
+				the cost of any actual treatment need identified.
+
+				<br /><br />
+				<Text type="title-sm" weight="bold">✅ New NHS Patients</Text>
+
+				 If you are a patient seeking to make an appointment as an NHS patient
+				at any of our 20 practices, please call the telephone number of the
+				practice that you wish to be seen at, and an appointment will be
+				arranged if possible. It is important to note that due to high demand,
+				an appointment may only be available after a considerable time on
+				a waiting list. Alternatively, some patients may take the option
+				of being seen initially on a Private basis, with the intention of
+				becoming an NHS patient at a later date, when the waiting list is
+				shorter and more easy to manage.
+
+				<br />
+				<br />
+
+				<Text type="title-sm" weight="bold">
+					✅ Our regular attending NHS patients wishing to make an
+					appointment
+				</Text>
+
+				 Please simply call your practice on the practice telephone number
+				and an appointment will be arranged for you in the normal way, and
+				this appointment availability will just depend on our clinical capacity
+				for you to be seen. Usually the time to make an appointment varies
+				from a few days to a few weeks for our regular patients.
+
+				<br />
+				<br />
+
+				<Text type="title-sm" weight="bold">
+					✅ Our regular attending NHS patients (in pain)
+				</Text>
+				 If you are a patient in pain or discomfort, and you are a
+				regular attender at your dental practice, then normally an NHS
+				appointment can be arranged for you, on the understanding that
+				this is an emergency appointment, where you will be treated on a
+				"sit and wait basis". When a patient is seen on this basis, this
+				can mean that there is a possibility of an increased waiting
+				time from arrival at the practice to being seen by a dentist.
+				Naturally, our teams will do their best for you to be seen as
+				quickly as possible, and this is often within 30 minutes,
+				however this can be up to 3 hours at busier times, so it is
+				important for you to be able to manage your expectations when
+				attending on a sit and wait basis.
+				<br />
+				<br />
+			</div>
+		</Fragment>
+	</Section>
+</Page>
