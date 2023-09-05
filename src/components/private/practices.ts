@@ -96,3 +96,5 @@ export const practices = [
 		href: 'manor-park',
 	},
 ] as const;
+
+// TODO: telephone + addresss + reviews

@@ -12,3 +12,5 @@ export const reviews = [
 		text: "I've had the pleasure of working for this company for two years. I've received an excellent amount of help and support alerting me to excel. Whenever something was asked or assistance was needed it has been provided. I've had no issues since I've started working for this company. Even though at time it was difficult but with the right spot working no longer became a chore",
 	},
 ];
+
+// TODO: all good ones

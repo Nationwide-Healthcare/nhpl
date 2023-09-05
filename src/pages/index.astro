@@ -5,28 +5,129 @@ import Review from '../components/private/Review.astro';
 import Page from '../components/public/Page.astro';
 import Practices from '../components/private/Practices.astro';
 import Header from '../components/public/layout/Header.astro';
+import Hero from '../components/public/layout/Hero.astro';
+import Button from '../components/public/Button.astro';
+import Link from '../components/public/Link.astro';
+import Icon from '../components/public/Icon.astro';
 ---
 
 <Page title="" description="" keywords="">
-	<Header name="main" />
+	<Hero class="bg-blue text-white">
+		<Fragment slot="title">
+			Nationwide Healthcare <div>Providers Limited</div>
+		</Fragment>
+		<Fragment slot="body">
+			<Text>
+				Excellent Dental Care - Education - Training - Development
+			</Text>
+		</Fragment>
+
+		<Fragment slot="buttons">
+			<div
+				class="flex flex-col md:flex-row gap-4 items-center justify-center"
+			>
+				<Link href="tel:01159790909">
+					<Button style="secondary" class="flex flex-row gap-1">
+						<Icon type="phone" />0115 979 0909
+					</Button>
+				</Link>
+
+				<Link href="https://www.nhpl.co.uk">
+					<Button style="secondary" class="flex flex-row gap-1">
+						<Icon type="globe-alt" />www.nhpl.co.uk
+					</Button>
+				</Link>
+
+				<Link href="mailto:info@nhpl.co.uk">
+					<Button style="secondary" class="flex flex-row gap-1">
+						<Icon type="envelope" /> info@nhpl.co.uk
+					</Button>
+				</Link>
+
+				<Link
+					href="https://www.google.com/search?q=nationwide+healthcare+providers+limited+reviews#lrd=0x4879c18df10d1045:0xe7241ec5cc066681,1,,,,"
+				>
+					<Button style="secondary" class="flex flex-row gap-1">
+						<Icon type="star" /> Reviews
+					</Button>
+				</Link>
+			</div>
+		</Fragment>
+	</Hero>
+
+	<Section class="bg-gray6" size="lg">
+		<Review slot="body" />
+	</Section>
 
 	<div class="text-center">
 		<Section size="lg">
+			<Fragment slot="title">About Us</Fragment>
 			<Fragment slot="body">
 				<div class="text-left">
 					Nationwide Healthcare Providers Limited, (NHPL), owns a
-					group of 20 dental practices located throughout
+					group of 16 dental practices located throughout
 					Nottinghamshire, Derbyshire, Leicestershire, Sheffield,
-					South Yorkshire, Wakefield and Barnsley. Please see below
-					for addresses and contact details of each practice.
+					South Yorkshire, Wakefield and Barnsley. NHPL is in the
+					process of expanding this group of practices, especially
+					throughout Nottinghamshire by adding dental practices in
+					Sutton In Ashfield, Netherfield, Rise Park and Hucknall to
+					our small family of practices. Please see below for
+					addresses and contact details of each practice.
 				</div>
 			</Fragment>
 		</Section>
 
-		<Section size="lg" class="bg-white">
+		<Section size="lg" class="bg-gray6">
+			<Fragment slot="title">Our Way</Fragment>
 			<Fragment slot="body">
 				<div class="text-left">
-					<Text type="body" weight="bold">New NHS Patients</Text>
+					We are caring, progressive, enjoy our work and use a
+					positive spirit to get things done. We take pride in our
+					work and actively seek new ways of doing things better. We
+					value integrity, credibility and respect for the individual.
+					We build constructive relationships to acheive positive
+					outcomes for all. We believe that success comes through
+					recognising the value of people and encouraging that value
+					through professional and personal development.
+				</div>
+			</Fragment>
+		</Section>
+
+		<Section size="lg">
+			<Fragment slot="title">Our Vision</Fragment>
+			<Fragment slot="body">
+				<div class="text-left">
+					Nationwide Healthcare Providers Limited is committed to
+					being a leading provider of dental healthcare services
+					throughout Nottinghamshire and the East Midlands, by
+					delivering high quality outcomes for patients and ensuring
+					long term sustainability.
+				</div>
+			</Fragment>
+		</Section>
+
+		<Section size="lg" class="bg-gray6">
+			<Fragment slot="body">
+				<div class="text-left">
+					<Text type="title-sm" weight="bold">
+						✅ New Private Patients
+					</Text>
+					 If you are a new patient, and wish to be seen privately,
+					several dental surgeons are able to offer appointments
+					sooner, and these may even be available at short notice and
+					even on the same day. This availability cannot be
+					gauranteed, however, it is a possibility that this can be
+					arranged swiftly. The fee for being seen by a dental surgeon
+					on a private basis in an emergency is normally £50, this is
+					payable at the time of booking the appointment, and this fee
+					includes the cost of seeing the dentist and all necessary
+					X-rays and does not include the cost of any actual treatment
+					need identified.
+
+					<br /><br />
+					<Text type="title-sm" weight="bold">
+						✅ New NHS Patients
+					</Text>
 
 					 If you are a patient seeking to make an appointment as an NHS
 					patient at any of our 20 practices, please call the telephone
@@ -41,8 +142,8 @@ import Header from '../components/public/layout/Header.astro';
 					<br />
 					<br />
 
-					<Text type="body" weight="bold">
-						Our regular attending NHS patients wishing to make an
+					<Text type="title-sm" weight="bold">
+						✅ Our regular attending NHS patients wishing to make an
 						appointment
 					</Text>
 
@@ -56,8 +157,8 @@ import Header from '../components/public/layout/Header.astro';
 					<br />
 					<br />
 
-					<Text type="body" weight="bold">
-						Our regular attending NHS patients (in pain)
+					<Text type="title-sm" weight="bold">
+						✅ Our regular attending NHS patients (in pain)
 					</Text>
 					 If you are a patient in pain or discomfort, and you are a
 					regular attender at your dental practice, then normally an
@@ -74,29 +175,10 @@ import Header from '../components/public/layout/Header.astro';
 					a sit and wait basis.
 					<br />
 					<br />
-
-					<Text type="body" weight="bold">New Private Patients</Text>
-					 If you are a new patient, and wish to be seen privately,
-					several dental surgeons are able to offer appointments
-					sooner, and these may even be available at short notice and
-					even on the same day. This availability cannot be
-					gauranteed, however, it is a possibility that this can be
-					arranged swiftly. The fee for being seen by a dental surgeon
-					on a private basis in an emergency is normally £50, this is
-					payable at the time of booking the appointment, and this fee
-					includes the cost of seeing the dentist and all necessary
-					X-rays and does not include the cost of any actual treatment
-					need identified.
 				</div>
 			</Fragment>
 		</Section>
 	</div>
-
-	<!--
-	<Section class="bg-gray6" size="lg">
-		<Review slot="body" />
-	</Section>
-	 -->
 
 	<Section size="lg">
 		<Fragment slot="title">Our Mission</Fragment>
