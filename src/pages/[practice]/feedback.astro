@@ -1,11 +1,11 @@
 ---
-import Header from '../../components/public/layout/Header.astro';
-import Button from '../../components/public/Button.astro';
-import Hero from '../../components/public/layout/Hero.astro';
 import Page from '../../components/private/Page.astro';
-import Section from '../../components/public/Section.astro';
+import Button from '../../components/public/Button.astro';
 import Link from '../../components/public/Link.astro';
+import Section from '../../components/public/Section.astro';
 import Text from '../../components/public/Text.astro';
+import Header from '../../components/public/layout/Header.astro';
+import Hero from '../../components/public/layout/Hero.astro';
 
 import { practices } from '../../components/private/practices.ts';
 
@@ -18,7 +18,11 @@ export async function getStaticPaths() {
 const practice = practices.find((p) => p.href === Astro.params.practice);
 ---
 
-<Page title="" description="" keywords="">
+<Page
+	title="Feedback"
+	description={`Learn more about our approach to feedback here at ${practice.name}`}
+	keywords="dentist, dental, nhs, private, near me, emergency, dental practice, new patients"
+>
 	<Header name="practice" base={`/${practice?.href}`} />
 
 	<Hero>
@@ -67,7 +71,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 							class="underline"
 							href="tel:01159700007"
 						>
-							0115 970 0007
+							{practice.phone}
 						</Link>
 					</li>
 					<li>

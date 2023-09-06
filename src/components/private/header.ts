@@ -7,12 +7,24 @@ export const headers = [
 				href: '/',
 			},
 			{
-				name: 'EEA',
-				href: '/eea/',
+				name: 'Dental Foundation Training',
+				href: '/dft/',
+			},
+			{
+				name: 'European Graduates',
+				href: 'https://eeadentalgraduates.co.uk/',
+			},
+			{
+				name: 'Structured Learning Program',
+				href: '/slp/',
 			},
 			{
 				name: 'PLVE',
-				href: '/plve/',
+				href: 'https://plvedental.co.uk/',
+			},
+			{
+				name: 'Gallery',
+				href: '/gallery/',
 			},
 		],
 	},
@@ -35,10 +47,12 @@ export const headers = [
 				name: 'Emergency',
 				href: '/treatments/emergency/',
 			},
+			/*
 			{
 				name: 'Fees & Finance',
 				href: '/fees/',
 			},
+			*/
 			{
 				name: 'About Us',
 				href: '/about-us/',

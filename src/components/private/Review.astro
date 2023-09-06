@@ -1,31 +1,95 @@
 ---
 import { reviews } from './review.ts';
 
-import Text from '../public/Text.astro';
 import Icon from '../public/Icon.astro';
+import Text from '../public/Text.astro';
 ---
 
-<div
-	class="mx-auto grid grid-flow-row grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 h-full"
->
-	{
-		reviews.map((review) => (
-			<div class="flex h-full flex-col rounded-lg bg-white p-8">
-				<Text type="body" weight="normal">
-					{review.text}
-				</Text>
+<div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-2 w-full items-start">
+	<div class="flex flex-col gap-2">
+		{
+			reviews.map((review, index) =>
+				index < 5 ? (
+					<div class="flex flex-col rounded-lg bg-white p-8">
+						<Text type="body" weight="normal">
+							{review.text}
+						</Text>
 
-				<div class="mt-auto flex w-full flex-row items-center justify-start pt-8 text-yellow">
-					<Text type="body" weight="bold" class="mr-auto text-black">
-						{review.name}
-					</Text>
-					<Icon type="star" />
-					<Icon type="star" />
-					<Icon type="star" />
-					<Icon type="star" />
-					<Icon type="star" />
-				</div>
-			</div>
-		))
-	}
+						<div class="mt-auto flex w-full flex-row items-center justify-start pt-8 text-yellow">
+							<Text
+								type="body"
+								weight="bold"
+								class="mr-auto text-black "
+							>
+								{review.name}
+							</Text>
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+						</div>
+					</div>
+				) : null,
+			)
+		}
+	</div>
+
+	<div class="flex flex-col gap-2">
+		{
+			reviews.map((review, index) =>
+				index < 8 && index > 4 ? (
+					<div class="flex flex-col rounded-lg bg-white p-8">
+						<Text type="body" weight="normal">
+							{review.text}
+						</Text>
+
+						<div class="mt-auto flex w-full flex-row items-center justify-start pt-8 text-yellow">
+							<Text
+								type="body"
+								weight="bold"
+								class="mr-auto text-black "
+							>
+								{review.name}
+							</Text>
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+						</div>
+					</div>
+				) : null,
+			)
+		}
+	</div>
+
+	<div class="flex flex-col gap-2">
+		{
+			reviews.map((review, index) =>
+				index < 12 && index > 8 ? (
+					<div class="flex flex-col rounded-lg bg-white p-8">
+						<Text type="body" weight="normal">
+							{review.text}
+						</Text>
+
+						<div class="mt-auto flex w-full flex-row items-center justify-start pt-8 text-yellow">
+							<Text
+								type="body"
+								weight="bold"
+								class="mr-auto text-black "
+							>
+								{review.name}
+							</Text>
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+							<Icon type="star" />
+						</div>
+					</div>
+				) : null,
+			)
+		}
+	</div>
 </div>

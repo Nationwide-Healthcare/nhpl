@@ -1,16 +1,16 @@
 ---
-import Header from '../../components/public/layout/Header.astro';
-import Button from '../../components/public/Button.astro';
-import Hero from '../../components/public/layout/Hero.astro';
-import Treatments from '../../components/private/Treatments.astro';
-import Page from '../../components/private/Page.astro';
-import Section from '../../components/public/Section.astro';
-import Link from '../../components/public/Link.astro';
+import { Image } from 'astro:assets';
+
 import Awards from '../../components/private/Awards.astro';
-import Team from '../../components/private/Team.astro';
-import Text from '../../components/public/Text.astro';
-import Icon from '../../components/public/Icon.astro';
+import Page from '../../components/private/Page.astro';
 import Testimonials from '../../components/private/Testimonials.astro';
+import Treatments from '../../components/private/Treatments.astro';
+import Button from '../../components/public/Button.astro';
+import Icon from '../../components/public/Icon.astro';
+import Link from '../../components/public/Link.astro';
+import Section from '../../components/public/Section.astro';
+import Text from '../../components/public/Text.astro';
+import Header from '../../components/public/layout/Header.astro';
 
 import { practices } from '../../components/private/practices.ts';
 
@@ -20,10 +20,18 @@ export async function getStaticPaths() {
 	});
 }
 
-const practice = practices.find((p) => p.href === Astro.params.practice);
+const practice =
+	practices.find((p) => p.href === Astro.params.practice) || practices[0];
+
+const image = (await import(`../../assets/practices/${practice.image}.jpg`))
+	.default;
 ---
 
-<Page title="" description="" keywords="">
+<Page
+	title="Home"
+	description={`Welcome to ${practice.name} - the practice setting the Gold Standard in Dental Care.`}
+	keywords="dentist, dental, nhs, private, near me, emergency, dental practice, new patients"
+>
 	<Header name="practice" base={`/${practice?.href}`} />
 
 	<div class="w-full bg-blue">
@@ -39,31 +47,34 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		</div>
 	</div>
 
-	<div class="w-full block relative h-[600px] mx-auto">
-		<img
-			class="w-full h-full object-cover block"
-			transition:name={practice.href}
-			transition:persist={practice.href}
-			src={`/images/practices/${practice?.image}`}
-		/>
-
+	<div class="w-full block relative md:h-[600px] mx-auto">
 		<div
-			class="absolute inline-block text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 px-16 py-8 bg-white/50 backdrop-blur-lg rounded-lg"
+			class="md:absolute md:inline-block text-center md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-[1] px-16 py-8 bg-white/50 backdrop-blur-lg rounded-lg"
 		>
 			<Text type="title-xl" weight="black">
 				Welcome to <div class="inline-block text-blue">
-					{practice?.name}
+					{practice.name}
 				</div>
 			</Text>
 
 			<Text>Setting the Gold Standard in Dental Care.</Text>
 
 			<Button style="primary" size="medium" class="mt-4">
-				<Link class="flex flex-row gap-2" href="tel:01159700007">
-					<Icon type="phone" />0115 970 0007
+				<Link
+					class="flex flex-row gap-2"
+					href={`tel:${practice.phone}`}
+				>
+					<Icon type="phone" />{practice.phone}
 				</Link>
 			</Button>
 		</div>
+
+		<Image
+			src={image}
+			alt="Practice Image"
+			transition:name={practice.href}
+			class="w-full h-full object-cover block"
+		/>
 	</div>
 
 	<Section size="lg">
@@ -72,10 +83,11 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		</Fragment>
 		<Fragment slot="body">
 			<Text>
-				At Seven Dental in the centre of Nottinghamshire, we aim to meet
-				our patient's expectations and deliver exceptional patient care
-				that puts our patients at the heart of everything we do. We aim
-				to deliver this approach in all aspects of our service to you.
+				At {practice.name} in the centre of Nottinghamshire, we aim to
+				meet our patient's expectations and deliver exceptional patient
+				care that puts our patients at the heart of everything we do. We
+				aim to deliver this approach in all aspects of our service to
+				you.
 			</Text>
 
 			<Text>
@@ -92,11 +104,11 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 				If you would like straighter teeth, or a brighter, whiter smile,
 				or even if you would prefer to have natural teeth coloured
 				fillings instead of the traditional grey or black fillings,
-				please call us on 0115 970 0007 and speak to one of our friendly
-				reception team and ask for a cosmetic care consulation - this is
-				currently available for a limited period only at a cost of
-				£30.00 that is payable in advance to see a dentist to discuss
-				your needs.
+				please call us on {practice.phone} and speak to one of our
+				friendly reception team and ask for a cosmetic care consulation
+				- this is currently available for a limited period only at a
+				cost of £30.00 that is payable in advance to see a dentist to
+				discuss your needs.
 			</Text>
 		</Fragment>
 	</Section>
@@ -105,7 +117,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 		<Fragment slot="title">Dental Care for Everyone</Fragment>
 		<Fragment slot="body">
 			<Text>
-				At Seven Dental, we believe everyone deserves a radiant smile
+				At {practice.name}, we believe everyone deserves a radiant smile
 				and top-tier dental care. We proudly open our doors to all
 				individuals, regardless of whether you're an existing patient or
 				looking to visit us for the first time. We offer a wide variety
@@ -116,7 +128,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 				and professionalism that defines our practice. Our telephone
 				number is
 				<Link class="text-black underline" href={'tel:01159700007'}>
-					0115 970 0007
+					{practice.phone}
 				</Link>
 			</Text>
 		</Fragment>
@@ -137,7 +149,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 					class="text-white underline"
 					href={'tel:01159700007'}
 				>
-					0115 970 0007
+					{practice.phone}
 				</Link>
 			</Text>
 
@@ -153,8 +165,8 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 
 		<Fragment slot="caption">
 			Whether you're looking for General Dental Treatment or Cosmetic
-			Care, we at Seven Dental offer a wide variety of treatment options
-			available to everyone.
+			Care, we at {practice.name} offer a wide variety of treatment
+			options available to everyone.
 		</Fragment>
 
 		<Fragment slot="body">
@@ -181,11 +193,12 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 	<Section size="lg" class="bg-gray6">
 		<Fragment slot="title">Multi-Award Winning Dentistry</Fragment>
 		<Fragment slot="caption">
-			Seven Dental is a modern, diverse and multi-cultural dental practice
-			that has been designed with setting the Gold Standard in Dental Care
-			provision in mind and consistently demonstrates steadfast dedication
-			and commitment to providing a highly professional and friendly
-			service to both NHS and Private patients alike.
+			{practice.name} is a modern, diverse and multi-cultural dental
+			practice that has been designed with setting the Gold Standard in
+			Dental Care provision in mind and consistently demonstrates
+			steadfast dedication and commitment to providing a highly
+			professional and friendly service to both NHS and Private patients
+			alike.
 		</Fragment>
 
 		<Fragment slot="body">

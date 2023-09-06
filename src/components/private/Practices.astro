@@ -1,7 +1,9 @@
 ---
-import Text from '../public/Text.astro';
+import { Image } from 'astro:assets';
+
 import Button from '../public/Button.astro';
 import Link from '../public/Link.astro';
+import Text from '../public/Text.astro';
 
 import { practices } from './practices.ts';
 
@@ -11,6 +13,15 @@ interface Props {
 }
 
 const properties = Astro.props;
+
+const images = await Promise.all(
+	practices.map(async (practice) => {
+		const image = await import(
+			`../../assets/practices/${practice.image}.jpg`
+		);
+		return image.default;
+	}),
+);
 
 /*
 properties.filter
@@ -22,35 +33,51 @@ properties.filter
 ---
 
 <div
-	class="grid w-full grid-cols-1 items-center justify-center gap-4 py-8 sm:grid-cols-2 md:grid-cols-3"
+	class="grid w-full grid-cols-1 items-center justify-center gap-4 md:gap-2 py-8 sm:grid-cols-2 md:grid-cols-3"
 >
 	{
 		practices.map((practice, index) => (
-			<Link
-				href={`${practice.href}/`}
-				class={
-					'flex h-full flex-col items-center justify-start gap-4 rounded-lg bg-white pb-4 text-center duration-150 hover:shadow-lg ' +
-					(properties.limit
-						? properties.limit != undefined &&
-						  index >= properties.limit
-							? 'hidden'
+			<div class="flex h-full flex-col items-start justify-start bg-white pb-4 text-left gap-4 duration-150 hover:shadow-lg">
+				<Link
+					href={`${practice.href}/`}
+					class={
+						properties.limit
+							? properties.limit != undefined &&
+							  index >= properties.limit
+								? 'hidden'
+								: null
 							: null
-						: null)
-				}
-			>
-				<img
-					class="mb-auto w-full rounded-t-lg object-cover"
-					src={`./images/practices/${practice.image}`}
-					transition:name={practice.href}
-					transition:persist={practice.href}
-				/>
-				<Text type={'body'} weight={'bold'}>
-					{practice.name}
-				</Text>
-				<Text type={'body'} weight={'normal'}>
-					{practice.location}
-				</Text>
-			</Link>
+					}
+				>
+					<Image
+						src={images[index]}
+						alt="Practice Image"
+						class="mb-auto min-h-[200px] h-[200px] object-cover w-full"
+						transition:name={practice.href}
+						transition:persist={practice.href}
+					/>
+
+					<div class="flex h-full flex-col gap-4 px-8 pt-8">
+						<Text
+							type="title-sm"
+							style="sans"
+							class="flex flex-row items-center gap-2"
+						>
+							{practice.name}
+						</Text>
+						<Text>{practice.address}</Text>
+					</div>
+				</Link>
+
+				<Link
+					class="px-8 pb-4 mt-auto"
+					href={`tel:${practice.phone.replaceAll(' ', '')}`}
+				>
+					<Button style="secondary">
+						<Text>{practice.phone}</Text>
+					</Button>
+				</Link>
+			</div>
 		))
 	}
 </div>

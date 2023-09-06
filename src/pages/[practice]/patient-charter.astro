@@ -1,14 +1,14 @@
 ---
-import Header from '../../components/public/layout/Header.astro';
-import Button from '../../components/public/Button.astro';
-import Hero from '../../components/public/layout/Hero.astro';
-import Testimonials from '../../components/private/Testimonials.astro';
-import Page from '../../components/private/Page.astro';
-import Section from '../../components/public/Section.astro';
-import Link from '../../components/public/Link.astro';
 import Awards from '../../components/private/Awards.astro';
+import Page from '../../components/private/Page.astro';
 import Team from '../../components/private/Team.astro';
+import Testimonials from '../../components/private/Testimonials.astro';
+import Button from '../../components/public/Button.astro';
+import Link from '../../components/public/Link.astro';
+import Section from '../../components/public/Section.astro';
 import Text from '../../components/public/Text.astro';
+import Header from '../../components/public/layout/Header.astro';
+import Hero from '../../components/public/layout/Hero.astro';
 
 import { practices } from '../../components/private/practices.ts';
 
@@ -21,7 +21,11 @@ export async function getStaticPaths() {
 const practice = practices.find((p) => p.href === Astro.params.practice);
 ---
 
-<Page title="" description="" keywords="">
+<Page
+	title="Patient Charter"
+	description={`Learn more about our patient charter here at ${practice.name}`}
+	keywords="dentist, dental, nhs, private, near me, emergency, dental practice, new patients"
+>
 	<Header name="practice" base={`/${practice?.href}`} />
 
 	<Hero>
@@ -132,11 +136,12 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 	<Section size="lg">
 		<Fragment slot="title">Multi-Award Winning Dentistry</Fragment>
 		<Fragment slot="caption">
-			Seven Dental is a modern, diverse and multi-cultural dental practice
-			that has been designed with setting the Gold Standard in Dental Care
-			provision in mind and consistently demonstrates steadfast dedication
-			and commitment to providing a highly professional and friendly
-			service to both NHS and Private patients alike.
+			{practice.name} is a modern, diverse and multi-cultural dental
+			practice that has been designed with setting the Gold Standard in
+			Dental Care provision in mind and consistently demonstrates
+			steadfast dedication and commitment to providing a highly
+			professional and friendly service to both NHS and Private patients
+			alike.
 		</Fragment>
 
 		<Fragment slot="body">

@@ -18,6 +18,9 @@ export async function getStaticPaths() {
 		return { params: { practice: practice.href } };
 	});
 }
+
+const practice =
+	practices.find((p) => p.href === Astro.params.practice) || practices[0];
 ---
 
 <html lang="en">
@@ -48,6 +51,6 @@ export async function getStaticPaths() {
 
 	<body class="min-h-screen">
 		<slot />
-		<Footer base="/seven-dental" />
+		<Footer base={`/${practice?.href}`} />
 	</body>
 </html>

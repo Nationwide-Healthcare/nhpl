@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
+import Text from '../public/Text.astro';
+
 const image = (await import(`../../assets/reviews/review.jpg`)).default;
 ---
 
@@ -10,14 +12,20 @@ const image = (await import(`../../assets/reviews/review.jpg`)).default;
 	>
 		<Image src={image} alt="review" class="h-full object-cover" />
 
-		<div class="inline-block">
-			<p
-				class="px-4 text-title-sm font-bold leading-[40px] w-full z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+		<div
+			class="flex flex-col gap-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-screen-sm z-[1]"
+		>
+			<Text
+				style="serif"
+				weight="bold"
+				type="title-sm"
+				class="px-4 leading-[40px]"
 			>
 				“I was really nervous but they were so efficient and kind that
 				there wasn't anything to be worried about. It was quick,
 				painless and they explained everything really well. Brilliant!”
-			</p>
+			</Text>
+			<Text type="title-sm" weight="light" style="sans">Initials</Text>
 		</div>
 
 		<!--<img class="h-[24px]" src="./images/stars.png" />-->

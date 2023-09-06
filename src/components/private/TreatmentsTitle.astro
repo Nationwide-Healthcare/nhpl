@@ -3,8 +3,8 @@ import Text from '../public/Text.astro';
 
 import { Image } from 'astro:assets';
 
-import { treatments } from '../private/treatments';
 import Prices from '../private/Prices.astro';
+import { treatments } from '../private/treatments';
 
 interface Props {
 	treatment: (typeof treatments)[number]['name'];
@@ -27,9 +27,9 @@ const image = (
 	<Image
 		src={image}
 		alt={treatment?.image.alt}
-		class="w-full object-cover"
+		class="w-full object-cover brightness-75"
 		transition:name={`${treatment?.href}`}
-		transition:persist={`${treatment?.href}`}
+		transition:persist={treatment?.href}
 	/>
 
 	<Text type="title-xl" weight="bold" class="absolute z-[1] text-white">

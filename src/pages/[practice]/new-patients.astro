@@ -1,9 +1,9 @@
 ---
-import Header from '../../components/public/layout/Header.astro';
 import Page from '../../components/private/Page.astro';
-import Text from '../../components/public/Text.astro';
-import Hero from '../../components/public/layout/Hero.astro';
 import Section from '../../components/public/Section.astro';
+import Text from '../../components/public/Text.astro';
+import Header from '../../components/public/layout/Header.astro';
+import Hero from '../../components/public/layout/Hero.astro';
 
 import { practices } from '../../components/private/practices.ts';
 
@@ -16,13 +16,18 @@ export async function getStaticPaths() {
 const practice = practices.find((p) => p.href === Astro.params.practice);
 ---
 
-<Page title="" description="" keywords="">
+<Page
+	title="New Patients"
+	description={`Learn more about how to join our practice as a new patient here at ${practice.name}`}
+	keywords="dentist, dental, nhs, private, near me, emergency, dental practice, new patients"
+>
 	<Header name="practice" base={`/${practice?.href}`} />
 
 	<Hero>
 		<Fragment slot="title">New Patients</Fragment>
 		<Fragment slot="body">
-			See below how to join Seven Dental as a new NHS or Private patient
+			See below how to join {practice.name} as a new NHS or Private
+			patient
 		</Fragment>
 	</Hero>
 
@@ -31,7 +36,7 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 
 		<Fragment slot="body">
 			<Text type="body" weight="normal">
-				At Seven Dental, we are currently accepting new NHS patients.
+				At {practice.name}, we are currently accepting new NHS patients.
 			</Text>
 			<Text type="body" weight="normal">
 				The demand for NHS treatment is very high at the moment, and so
@@ -58,10 +63,10 @@ const practice = practices.find((p) => p.href === Astro.params.practice);
 
 		<Fragment slot="body">
 			<Text type="body" weight="normal">
-				At Seven Dental, we are currently accepting new Private patients
-				and a new Private patient appointment is usually available
-				within 24 hours. Occasionally, this period can be 48 hours,
-				however, equally, if the problem is urgent, a new Private
+				At {practice.name}, we are currently accepting new Private
+				patients and a new Private patient appointment is usually
+				available within 24 hours. Occasionally, this period can be 48
+				hours, however, equally, if the problem is urgent, a new Private
 				patient appointment can sometimes be made for the same day.
 			</Text>
 		</Fragment>

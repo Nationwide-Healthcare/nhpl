@@ -1,4 +1,4 @@
-import { treatments } from './treatments.ts'
+import { treatments } from './treatments.ts';
 
 export const sections = [
 	{
@@ -6,9 +6,9 @@ export const sections = [
 		links: treatments.map((treatment) => {
 			return {
 				name: treatment.name,
-				href: `/treatments/${treatment.href}`
-			}
-		})
+				href: `/treatments/${treatment.href}`,
+			};
+		}),
 	},
 
 	{
@@ -16,29 +16,29 @@ export const sections = [
 		links: [
 			{
 				name: 'About Us',
-				href: '/about-us'
+				href: '/about-us',
 			},
 			{
 				name: 'Our Values',
-				href: '/our-values'
+				href: '/our-values',
 			},
 			{
 				name: 'Patient Charter',
-				href: '/patient-charter'
+				href: '/patient-charter',
 			},
 			{
 				name: 'Privacy Policy',
-				href: '/privacy-policy'
+				href: '/privacy-policy',
 			},
 			{
 				name: 'Feedback',
-				href: '/feedback'
+				href: '/feedback',
 			},
 			{
 				name: 'Compliance',
-				href: '/compliance'
-			}
-		]
+				href: '/compliance',
+			},
+		],
 	},
 
 	{
@@ -46,16 +46,16 @@ export const sections = [
 		links: [
 			{
 				name: '0115 970 0007',
-				href: 'tel:01159700007'
+				href: 'tel:01159700007',
 			},
 			{
 				name: 'patientrelationsteam@nationwidehealthcareproviderslimited.co.uk',
-				href: 'mailto:patientrelationsteam@nationwidehealthcareproviderslimited.co.uk'
+				href: 'mailto:patientrelationsteam@nationwidehealthcareproviderslimited.co.uk',
 			},
 			{
 				name: '69 - 75 Radford Road, Hyson Green, Nottingham NG7 5DR',
-				href: 'https://maps.google.com/?q=Seven%20Dental'
-			}
-		]
-	}
-] as const
+				href: 'https://maps.google.com/?q=Seven%20Dental',
+			},
+		],
+	},
+] as const;

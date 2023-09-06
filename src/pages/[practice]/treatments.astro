@@ -16,10 +16,15 @@ export async function getStaticPaths() {
 	});
 }
 
-const practice = practices.find((p) => p.href === Astro.params.practice);
+const practice =
+	practices.find((p) => p.href === Astro.params.practice) || practices[0];
 ---
 
-<Page title="" description="" keywords="">
+<Page
+	title="Our Treatments"
+	description={`View all the NHS and Private Treatments and Prices here at ${practice.name}.`}
+	keywords="treatments, dentist, dental, nhs, private, near me, emergency, dental practice, new patients"
+>
 	<Header name="practice" base={`/${practice?.href}`} />
 
 	<Hero>

@@ -63,7 +63,7 @@ const images = await Promise.all(
 					src={images[index]}
 					alt={treatment.image.alt}
 					transition:name={treatment.href}
-					transition:persist={`${treatment?.href}`}
+					transition:persist={treatment.href}
 				/>
 
 				<div class="flex h-full flex-col gap-4 p-8">
@@ -97,7 +97,7 @@ const images = await Promise.all(
 }
 
 <script>
-	['astro:load', 'load'].forEach((event) =>
+	['astro:page-load', 'load'].forEach((event) =>
 		document.addEventListener(event, function () {
 			var button_container = document.querySelector('div#treatment');
 

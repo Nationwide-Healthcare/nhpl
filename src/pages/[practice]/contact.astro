@@ -1,9 +1,9 @@
 ---
-import Header from '../../components/public/layout/Header.astro';
+import Awards from '../../components/private/Awards.astro';
 import Page from '../../components/private/Page.astro';
 import Section from '../../components/public/Section.astro';
 import Text from '../../components/public/Text.astro';
-import Awards from '../../components/private/Awards.astro';
+import Header from '../../components/public/layout/Header.astro';
 import Hero from '../../components/public/layout/Hero.astro';
 
 import { practices } from '../../components/private/practices.ts';
@@ -17,7 +17,11 @@ export async function getStaticPaths() {
 const practice = practices.find((p) => p.href === Astro.params.practice);
 ---
 
-<Page title="Contact Us" description="" keywords="">
+<Page
+	title="Contact Us"
+	description={`Learn more about how to contact our practice here at ${practice.name}`}
+	keywords="dentist, dental, nhs, private, near me, emergency, dental practice, new patients"
+>
 	<Header name="practice" base={`/${practice?.href}`} />
 
 	<Hero>

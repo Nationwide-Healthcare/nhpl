@@ -1,9 +1,8 @@
 ---
-import Header from '../../../components/public/layout/Header.astro';
 import Page from '../../../components/private/Page.astro';
-import Text from '../../../components/public/Text.astro';
+import Header from '../../../components/public/layout/Header.astro';
 import Section from '../../../components/public/Section.astro';
-import Prices from '../../../components/private/Prices.astro';
+import Text from '../../../components/public/Text.astro';
 
 import { practices } from '../../../components/private/practices.ts';
 
@@ -24,9 +23,9 @@ const treatment = treatments.find((treatment) => {
 ---
 
 <Page
-	title="Tooth Removal"
-	description="Learn more about Tooth Removal"
-	keywords="removal, extraction, tooth removal, remove, take out"
+	title="Teeth Whitening"
+	description={`Learn more about the Tooth Whitening Treatment we offer here at ${practice.name}`}
+	keywords="whitening, teeth whitening, tooth whitening"
 >
 	<Header name="practice" base={`/${practice?.href}`} />
 

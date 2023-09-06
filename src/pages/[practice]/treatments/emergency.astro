@@ -1,12 +1,11 @@
 ---
-import Header from '../../../components/public/layout/Header.astro';
 import Page from '../../../components/private/Page.astro';
-import Text from '../../../components/public/Text.astro';
-import Section from '../../../components/public/Section.astro';
-import Link from '../../../components/public/Link.astro';
-import Button from '../../../components/public/Button.astro';
-import Prices from '../../../components/private/Prices.astro';
 import TreatmentsTitle from '../../../components/private/TreatmentsTitle.astro';
+import Button from '../../../components/public/Button.astro';
+import Link from '../../../components/public/Link.astro';
+import Section from '../../../components/public/Section.astro';
+import Text from '../../../components/public/Text.astro';
+import Header from '../../../components/public/layout/Header.astro';
 
 import { practices } from '../../../components/private/practices.ts';
 
@@ -25,7 +24,11 @@ const treatment = treatments.find((treatment) => {
 });
 ---
 
-<Page title="Emergency" description="" keywords="">
+<Page
+	title="Emergency"
+	description={`Learn more about the Emergency Treatment we offer here at ${practice.name}`}
+	keywords="emergency, nhs, private, dentist, near me"
+>
 	<Header name="practice" base={`/${practice?.href}`} />
 
 	<TreatmentsTitle treatment={treatment.name} />
@@ -60,7 +63,7 @@ const treatment = treatments.find((treatment) => {
 					class="underline"
 					href={'tel:01159700007'}
 				>
-					0115 970 0007
+					{practice.phone}
 				</Link>
 			</Text>
 
