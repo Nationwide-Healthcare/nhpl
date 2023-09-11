@@ -45,8 +45,8 @@ export const sections = [
 		title: 'Contact',
 		links: [
 			{
-				name: '0115 970 0007',
-				href: 'tel:01159700007',
+				name: '',
+				href: '',
 			},
 			{
 				name: 'patientrelationsteam@nationwidehealthcareproviderslimited.co.uk',
