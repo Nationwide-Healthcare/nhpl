@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home3/abbeydal/public_html/nhpl.co.uk/dist
+    - /bin/cp -R dist $DEPLOYPATH
