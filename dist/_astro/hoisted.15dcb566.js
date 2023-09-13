@@ -1,0 +1,1 @@
+import"./hoisted.14b5b446.js";["astro:page-load","load"].forEach(t=>document.addEventListener(t,function(){var e=document.querySelector("div#treatment"),n=document.querySelector("button#treatment"),o=document.querySelectorAll('a[id ^="treatment-"]');n?.addEventListener("click",function(){o.forEach(function(r){r.classList.remove("hidden")}),e?.classList.add("hidden")})}));
