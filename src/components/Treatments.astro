@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 
-import Text from '../public/Text.astro';
-import Link from '../public/Link.astro';
-import Button from '../public/Button.astro';
+import Text from './/Text.astro';
+import Link from './/Link.astro';
+import Button from './/Button.astro';
 
 function idGenerator() {
 	let id = '';
@@ -18,7 +18,7 @@ function idGenerator() {
 
 import { treatments } from './treatments.ts';
 
-import Icon from '../public/Icon.astro';
+import Icon from './/Icon.astro';
 
 type Filter = {
 	limit?: number;
@@ -36,7 +36,7 @@ const properties = Astro.props;
 const images = await Promise.all(
 	treatments.map(async (treatment) => {
 		const image = await import(
-			`../../assets/treatments/treatment-${treatment.image.src}.webp`
+			`../assets/treatments/treatment-${treatment.image.src}.webp`
 		);
 		return image.default;
 	}),

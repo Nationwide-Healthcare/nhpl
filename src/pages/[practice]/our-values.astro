@@ -1,16 +1,16 @@
 ---
-import Awards from '../../components/private/Awards.astro';
-import Page from '../../components/private/Page.astro';
-import Team from '../../components/private/Team.astro';
-import Testimonials from '../../components/private/Testimonials.astro';
-import Button from '../../components/public/Button.astro';
-import Link from '../../components/public/Link.astro';
-import Section from '../../components/public/Section.astro';
-import Text from '../../components/public/Text.astro';
-import Header from '../../components/public/layout/Header.astro';
-import Hero from '../../components/public/layout/Hero.astro';
+import Awards from '../../components/Awards.astro';
+import Page from '../../components/Page.astro';
+import Team from '../../components/Team.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Button from '../../components/Button.astro';
+import Link from '../../components/Link.astro';
+import Section from '../../components/Section.astro';
+import Text from '../../components/Text.astro';
+import Header from '../../components/layout/Header.astro';
+import Hero from '../../components/layout/Hero.astro';
 
-import { practices } from '../../components/private/practices.ts';
+import { practices } from '../../components/practices.ts';
 
 export async function getStaticPaths() {
 	return practices.map((practice) => {

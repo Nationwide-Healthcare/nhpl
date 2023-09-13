@@ -1,0 +1,48 @@
+---
+import Button from "./Button.astro";
+import Link from "./Link.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+    name: string;
+    icons: boolean;
+    text: boolean;
+}
+
+const properties = Astro.props;
+
+type Sidebar = {
+    name: string;
+    links: {
+        name: string;
+        href: string;
+        icon: string;
+    }[];
+};
+
+const sidebars: Sidebar[] = (await import("../private/json/sidebar.json"))
+    .default;
+var sidebar = sidebars.filter((sidebar) => {
+    return sidebar.name == properties.name ? true : false;
+})[0];
+
+const links = sidebar.links;
+---
+
+<aside class="bg-blue flex h-screen flex-col items-start justify-start">
+    {
+        links.map((link) => (
+            <Link
+                href={link.href}
+                class={
+                    Astro.url.pathname == link.href
+                        ? "flex flex-row bg-white/10 p-4 text-2xl font-bold text-white"
+                        : "flex flex-row p-4 text-2xl font-bold text-white hover:bg-white/10"
+                }
+            >
+                {properties.icons ? <Icon type={link.icon} /> : null}
+                {properties.text ? link.name : null}
+            </Link>
+        ))
+    }
+</aside>

@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import type { Props as IconProps } from "./Icon.astro";
+import Icon from "./Icon.astro";
+
+import Text from "./Text.astro";
+
+interface Props extends HTMLAttributes<"input"> {
+    icon?: IconProps["type"];
+    label?: string;
+}
+
+const properties = Astro.props;
+---
+
+<div class="w-full flex-col items-start justify-start">
+    {properties.label ? <Text>{properties.label}</Text> : null}
+
+    <div
+        class="border-sm border-gray6 text-body flex w-full items-center rounded-lg border"
+    >
+        {
+            properties.icon ? (
+                <div class="text-gray3 jusitfy-center border-gray6 flex h-[46px] items-center border-r px-4">
+                    <Icon type={properties.icon} />
+                </div>
+            ) : null
+        }
+
+        <input
+            class={`${properties.class} h-full w-full px-4 py-3`}
+            {...properties}
+        />
+    </div>
+</div>

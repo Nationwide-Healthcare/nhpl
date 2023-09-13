@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 
-import Text from '../public/Text.astro';
+import Text from './/Text.astro';
 
-const image = (await import(`../../assets/reviews/review.jpg`)).default;
+const image = (await import(`../assets/reviews/review.jpg`)).default;
 ---
 
 <div class="mx-auto w-full flex-col items-center justify-center pt-16">

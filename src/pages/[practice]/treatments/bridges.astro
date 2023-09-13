@@ -1,11 +1,11 @@
 ---
-import Page from '../../../components/private/Page.astro';
-import TreatmentsTitle from '../../../components/private/TreatmentsTitle.astro';
-import Section from '../../../components/public/Section.astro';
-import Text from '../../../components/public/Text.astro';
-import Header from '../../../components/public/layout/Header.astro';
+import Page from '../../../components/Page.astro';
+import TreatmentsTitle from '../../../components/TreatmentsTitle.astro';
+import Section from '../../../components/Section.astro';
+import Text from '../../../components/Text.astro';
+import Header from '../../../components/layout/Header.astro';
 
-import { practices } from '../../../components/private/practices.ts';
+import { practices } from '../../../components/practices.ts';
 
 const practice = practices.find((p) => p.href === Astro.params.practice);
 
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 	});
 }
 
-import { treatments } from '../../../components/private/treatments.ts';
+import { treatments } from '../../../components/treatments.ts';
 
 const treatment = treatments.find((treatment) => {
 	return treatment.name === 'Bridges';

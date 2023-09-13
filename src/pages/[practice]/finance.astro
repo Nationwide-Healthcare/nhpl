@@ -1,8 +1,8 @@
 ---
-import Page from '../../components/private/Page.astro';
-import Header from '../../components/public/layout/Header.astro';
+import Page from '../../components/Page.astro';
+import Header from '../../components/layout/Header.astro';
 
-import { practices } from '../../components/private/practices.ts';
+import { practices } from '../../components/practices.ts';
 
 export async function getStaticPaths() {
 	return practices.map((practice) => {

@@ -1,10 +1,10 @@
 ---
-import Page from '../../../components/private/Page.astro';
-import Header from '../../../components/public/layout/Header.astro';
-import Section from '../../../components/public/Section.astro';
-import Text from '../../../components/public/Text.astro';
+import Page from '../../../components/Page.astro';
+import Header from '../../../components/layout/Header.astro';
+import Section from '../../../components/Section.astro';
+import Text from '../../../components/Text.astro';
 
-import { practices } from '../../../components/private/practices.ts';
+import { practices } from '../../../components/practices.ts';
 
 const practice = practices.find((p) => p.href === Astro.params.practice);
 
@@ -14,8 +14,8 @@ export async function getStaticPaths() {
 	});
 }
 
-import { treatments } from '../../../components/private/treatments.ts';
-import TreatmentsTitle from '../../../components/private/TreatmentsTitle.astro';
+import { treatments } from '../../../components/treatments.ts';
+import TreatmentsTitle from '../../../components/TreatmentsTitle.astro';
 
 const treatment = treatments.find((treatment) => {
 	return treatment.name === 'Invisalign';

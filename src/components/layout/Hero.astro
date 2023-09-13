@@ -1,0 +1,48 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import Text from '../Text.astro';
+
+interface Props extends HTMLAttributes<'div'> {
+	image?: string;
+}
+
+const properties = Astro.props;
+---
+
+<div
+	class={`${properties.class} flex w-full flex-col items-center justify-center py-16 text-center `}
+>
+	<div
+		class="flex w-screen max-w-screen-md flex-col items-center justify-center gap-8 px-4"
+	>
+		<slot name="banner" />
+		<Text type="title-xl" weight="black">
+			<slot name="title">Title</slot>
+		</Text>
+
+		{Astro.slots.has('body') ? <slot name="body">Body</slot> : null}
+
+		<div class="mt-2 flex flex-row items-center gap-8 align-middle">
+			<slot name="buttons" />
+		</div>
+
+		<slot />
+	</div>
+
+	<!--
+	{
+		properties.image ? (
+			<img
+				src={properties.image}
+				class="rounded-t-xl mt-8 max-w-full rounded-t-lg"
+			/>
+		) : (
+			<img
+				src="/images/placeholder.jpg"
+				class="rounded-t-xl mt-8 max-w-full rounded-t-lg"
+			/>
+		)
+	}
+	-->
+</div>

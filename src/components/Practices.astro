@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 
-import Button from '../public/Button.astro';
-import Link from '../public/Link.astro';
-import Text from '../public/Text.astro';
+import Button from './/Button.astro';
+import Link from './/Link.astro';
+import Text from './/Text.astro';
 
 import { practices } from './practices.ts';
 
@@ -17,7 +17,7 @@ const properties = Astro.props;
 const images = await Promise.all(
 	practices.map(async (practice) => {
 		const image = await import(
-			`../../assets/practices/${practice.image}.jpg`
+			`../assets/practices/${practice.image}.jpg`
 		);
 		return image.default;
 	}),

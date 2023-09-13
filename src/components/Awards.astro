@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import { awards } from './awards.ts'
 
 const images = await Promise.all(awards.map(async (award) =>
-    await import(`../../assets/awards/award-tda-${award.image}.webp`)
+    await import(`../assets/awards/award-tda-${award.image}.webp`)
 ));
 ---
 

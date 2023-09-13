@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import Icon from "./Icon.astro";
+
+interface Props extends HTMLAttributes<"div"> {
+    type: "info" | "success" | "warning" | "danger";
+}
+
+var properties = Astro.props;
+---
+
+<div
+    class={`
+	${properties.class}
+	rounded-md px-4 py-3 flex flex-row gap-2 items-start justify-start w-full text-center md:text-left
+	${
+        {
+            info: "text-blue",
+            success: "text-green",
+            warning: "text-orange",
+            danger: "border border-red text-red",
+        }[properties.type]
+    }
+	`}
+    {...properties}
+>
+    <div class="hidden md:block">
+        {
+            {
+                info: <Icon type="information-circle" />,
+                success: <Icon type="check" />,
+                warning: <Icon type="exclamation-triangle" />,
+                danger: <Icon type="x-circle" />,
+            }[properties.type]
+        }
+    </div>
+
+    <div class="flex w-full flex-col">
+        <slot />
+    </div>
+</div>

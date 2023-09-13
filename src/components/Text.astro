@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"p"> {
+    type?:
+        | "title-xl"
+        | "title-lg"
+        | "title-md"
+        | "title-sm"
+        | "title-xs"
+        | "body";
+    weight?: "thin" | "light" | "normal" | "bold" | "black";
+    style?: "sans" | "serif";
+}
+
+const properties = Astro.props;
+
+const Element = {
+    "title-xl": "h1",
+    "title-lg": "h2",
+    "title-md": "h3",
+    "title-sm": "h4",
+    "title-xs": "h5",
+    body: "p",
+}[properties.type || "body"];
+
+const type = {
+    "title-xl": "text-title-xl",
+    "title-lg": "text-title-lg",
+    "title-md": "text-title-md",
+    "title-sm": "text-title-sm",
+    "title-xs": "text-title-xs",
+    body: "text-body",
+}[properties.type || "body"];
+---
+
+<Element
+    class:list={`
+		${properties.class}
+		${type}
+	`}
+    {...properties}
+>
+    <slot />
+</Element>

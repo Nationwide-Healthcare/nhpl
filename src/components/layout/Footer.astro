@@ -1,0 +1,50 @@
+---
+import Link from '../Link.astro';
+import Text from '../Text.astro';
+
+import { sections } from '..//footer.ts';
+
+interface Props {
+	base?: string;
+    phone?: string;
+}
+
+const properties = Astro.props;
+---
+
+{
+	sections.length > 0 ? (
+		<div class="flex w-full flex-col items-start justify-center gap-16 py-16 md:flex-row md:gap-0 md:px-16">
+			{sections.map((section) => (
+				<div class="mx-auto flex w-[350px] max-w-full flex-col items-start justify-start gap-4 text-gray3">
+					<Text type="body" weight="bold">
+						{section.title}
+					</Text>
+
+					{section.links.map((link, index) => (
+
+                        section.title == 'Contact' && index == 0 ? (
+                            <Link
+                                class="w-full break-all"
+                                href={`tel:${properties.phone?.replaceAll(' ', '')}`}
+                            >
+                                {properties.phone}
+                            </Link>
+                        ) :
+
+						<Link
+							class="w-full break-all"
+							href={
+								properties.base && section.title != 'Contact'
+									? `${properties.base}${link.href}`
+									: link.href
+							}
+						>
+							{link.name}
+						</Link>
+					))}
+				</div>
+			))}
+		</div>
+	) : null
+}

@@ -1,14 +1,14 @@
 ---
-import Header from '../../components/public/layout/Header.astro';
-import Page from '../../components/private/Page.astro';
-import Treatments from '../../components/private/Treatments.astro';
-import Hero from '../../components/public/layout/Hero.astro';
-import Prices from '../../components/private/Prices.astro';
-import Text from '../../components/public/Text.astro';
-import Pagination from '../../components/public/Pagination.astro';
-import Section from '../../components/public/Section.astro';
+import Header from '../../components/layout/Header.astro';
+import Page from '../../components/Page.astro';
+import Treatments from '../../components/Treatments.astro';
+import Hero from '../../components/layout/Hero.astro';
+import Prices from '../../components/Prices.astro';
+import Text from '../../components/Text.astro';
+import Pagination from '../../components/Pagination.astro';
+import Section from '../../components/Section.astro';
 
-import { practices } from '../../components/private/practices.ts';
+import { practices } from '../../components/practices.ts';
 
 export async function getStaticPaths() {
 	return practices.map((practice) => {

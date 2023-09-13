@@ -1,7 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 
-import Footer from '../public/layout/Footer.astro';
+import Footer from './/layout/Footer.astro';
 
 interface Props {
 	title: string;
@@ -11,7 +11,7 @@ interface Props {
 
 const properties = Astro.props;
 
-import { practices } from '../../components/private/practices.ts';
+import { practices } from './practices.ts';
 
 export async function getStaticPaths() {
 	return practices.map((practice) => {

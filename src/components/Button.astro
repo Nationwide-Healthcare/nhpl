@@ -1,0 +1,46 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import type { Props as IconProps } from "./Icon.astro";
+
+import Icon from "./Icon.astro";
+
+interface Props extends HTMLAttributes<"button"> {
+    style: "primary" | "secondary" | "tertiary" | "danger";
+    size?: "small" | "medium" | "large";
+    icon?: IconProps["type"];
+}
+
+const properties = Astro.props;
+---
+
+{
+    (
+        <button
+            class={`
+				${properties.class}
+				${
+                    {
+                        primary:
+                            "hover:bg-blue/90 bg-blue font-bold text-white shadow-sm duration-100",
+                        secondary:
+                            "border-gray6 border-2 bg-white font-bold text-black",
+                        tertiary: "text-blue bg-white font-bold",
+                        danger: "bg-red font-bold text-white",
+                    }[properties.style]
+                }
+				${
+                    {
+                        small: "rounded-sm px-2 py-1",
+                        medium: "rounded-md px-4 py-2",
+                        large: "rounded-md px-6 py-3",
+                    }[properties.size || "medium"]
+                }
+				}}
+			`}
+            {...properties}
+        >
+            <slot />
+        </button>
+    )
+}

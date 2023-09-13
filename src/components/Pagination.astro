@@ -1,0 +1,59 @@
+---
+/*
+I have no idea how to make this work
+*/
+
+import type { HTMLAttributes } from 'astro/types'
+
+import Button from './Button.astro'
+
+const slots = Object.keys(Astro.slots)
+
+type Props = HTMLAttributes<'div'>
+
+const properties = Astro.props
+
+/*
+	why are they returned in alphabetical order????
+*/
+---
+
+<div class={'pt-16 ' + properties.class}>
+	<div class="mx-auto grid w-full max-w-screen-lg grid-flow-row gap-4 px-4 pb-8 sm:grid-flow-col">
+		{
+			slots.map(async (slot) => {
+				return (
+					<Button style="secondary" id="pagination">
+						{slot}
+					</Button>
+				)
+			})
+		}
+	</div>
+
+	{
+		slots.map(async (slot, index) => {
+			return index == 0 ? (
+				<div set:html={await Astro.slots.render(slot)} id="pagination" />
+			) : (
+				<div class="hidden" id="pagination" set:html={await Astro.slots.render(slot)} />
+			)
+		})
+	}
+
+	<script>
+		document.addEventListener('astro:load', function () {
+			var buttons = document.querySelectorAll('button#pagination')
+			var sections = document.querySelectorAll('div#pagination')
+
+			buttons.forEach((button, index) => {
+				button.addEventListener('click', () => {
+					sections.forEach((section) => {
+						section.classList.add('hidden')
+					})
+					sections[index].classList.remove('hidden')
+				})
+			})
+		})
+	</script>
+</div>

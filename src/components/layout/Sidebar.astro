@@ -1,0 +1,40 @@
+---
+import Button from "../Button.astro";
+import Link from "../Link.astro";
+import Icon from "../Icon.astro";
+
+import { sidebars } from "..//sidebar.ts";
+
+interface Props {
+    name: (typeof sidebars)[number]["name"];
+    icons: boolean;
+    text: boolean;
+}
+
+const properties = Astro.props;
+
+const sidebar = sidebars.find((sidebar) => sidebar.name == properties.name);
+
+const links = sidebar?.links;
+---
+
+<aside class="bg-blue flex h-screen flex-col items-start justify-start">
+    {
+        links?.map((link) => (
+            <Link
+                href={link.href}
+                class={`
+					w-full
+					${
+                        Astro.url.pathname == link.href
+                            ? "flex flex-row bg-white/10 p-4 text-2xl font-bold text-white"
+                            : "flex flex-row p-4 text-2xl font-bold text-white hover:bg-white/10"
+                    }
+				`}
+            >
+                {properties.icons ? <Icon type={link.icon} /> : null}
+                {properties.text ? link.name : null}
+            </Link>
+        ))
+    }
+</aside>

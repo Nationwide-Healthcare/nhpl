@@ -1,10 +1,10 @@
 ---
-import Text from '../public/Text.astro';
+import Text from './/Text.astro';
 
 import { Image } from 'astro:assets';
 
-import Prices from '../private/Prices.astro';
-import { treatments } from '../private/treatments';
+import Prices from './Prices.astro';
+import { treatments } from './treatments';
 
 interface Props {
 	treatment: (typeof treatments)[number]['name'];
@@ -18,7 +18,7 @@ const treatment = treatments.find(
 
 const image = (
 	await import(
-		`../../assets/treatments/treatment-${treatment?.image.src}.webp`
+		`../assets/treatments/treatment-${treatment?.image.src}.webp`
 	)
 ).default;
 ---
